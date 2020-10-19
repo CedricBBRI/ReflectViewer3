@@ -1,0 +1,11 @@
+.git
+.vs
+.vscode
+.yamato
+
+packages
+.Src/bin
+.Src/obj
+
+*.meta
+*.md

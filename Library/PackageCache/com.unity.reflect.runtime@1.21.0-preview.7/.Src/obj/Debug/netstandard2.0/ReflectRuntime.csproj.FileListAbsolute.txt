@@ -1,0 +1,9 @@
+C:\build\output\unity\com.unity.reflect.runtime\.Src\bin\Debug\netstandard2.0\ReflectRuntime.deps.json
+C:\build\output\unity\com.unity.reflect.runtime\.Src\bin\Debug\netstandard2.0\ReflectRuntime.dll
+C:\build\output\unity\com.unity.reflect.runtime\.Src\bin\Debug\netstandard2.0\ReflectRuntime.pdb
+C:\build\output\unity\com.unity.reflect.runtime\.Src\obj\Debug\netstandard2.0\ReflectRuntime.csprojAssemblyReference.cache
+C:\build\output\unity\com.unity.reflect.runtime\.Src\obj\Debug\netstandard2.0\ReflectRuntime.csproj.CoreCompileInputs.cache
+C:\build\output\unity\com.unity.reflect.runtime\.Src\obj\Debug\netstandard2.0\ReflectRuntime.AssemblyInfoInputs.cache
+C:\build\output\unity\com.unity.reflect.runtime\.Src\obj\Debug\netstandard2.0\ReflectRuntime.AssemblyInfo.cs
+C:\build\output\unity\com.unity.reflect.runtime\.Src\obj\Debug\netstandard2.0\ReflectRuntime.dll
+C:\build\output\unity\com.unity.reflect.runtime\.Src\obj\Debug\netstandard2.0\ReflectRuntime.pdb

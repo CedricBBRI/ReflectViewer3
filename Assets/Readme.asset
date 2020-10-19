@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf7219bab7fe46a1ad266029b2fee19, type: 3}
+  m_Name: Readme
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2800000, guid: d7ea06d0b17c1f2449da59482578de9c, type: 3}
+  title: Reflect Custom Viewer
+  sections:
+  - heading: 'Reflect Custom Viewer'
+    text: "\nThis template is a good starting point for people who want to develop Reflect Custom Viewers.
+\n\nThis project includes :
+\n- the Reflect package,
+\n- a sample scene with a sample Reflect prefab ready to be customized,
+\n- a sample script to show the Project Metadatas by groups/keys/value,
+\n- a sample Post Processing asset to be tweaked,
+\n- and Image Import Rules for UI items.
+\n\nAll you need to jump-start development!
+\n\nThe SunStudy Canvas is overriden with InputFields and a custom script to make the Lat&Long values editable.
+\nSimply revert the SunStudy Canvas prefab, from within the Reflect Viewer prefab, to restore it to its original state.
+\n\nThe sample View Info panel and script, as well as the custom SplashScreen disabling, are added as 'overrides' on the Prefab.
+\nTo start from a fresh UI, simply 'Revert' the Prefab."
+    linkText: 
+    url: 
+  - heading: 
+    text: 'To learn more about Reflect, refer to the product page here:'
+    linkText: Unity Reflect
+    url: https://unity.com/products/reflect
+  - heading: 
+    text: 'For a quick demo on how to use this template, watch this video:'
+    linkText: Starting from the Unity Reflect Custom Viewer Template
+    url: https://youtu.be/fVHTRYNHLts
+  loadedLayout: 1

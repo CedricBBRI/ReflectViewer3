@@ -1,0 +1,19 @@
+{
+  "name": "com.unity.reflect.runtime",
+  "displayName": "Unity Reflect Runtime",
+  "version": "1.21.0-preview.7",
+  "unity": "2018.3",
+  "description": "Unity runtime compatible dlls to support Grpc on ios/android/osx/windows/linux.",
+  "keywords": [
+    "unity",
+    "aec",
+    "industrial",
+    "revit",
+    "sketchup"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.cds.internal.unity3d.com:unity/com.unity.reflect.runtime.git",
+    "revision": "505b86bb68d4efdb2f12464a6bf43b8ec5d8e418"
+  }
+}
