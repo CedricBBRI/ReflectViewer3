@@ -42,78 +42,75 @@ namespace UnityEngine.Reflect
 
         public void FindAll(InputField strInput)
         {
-            Debug.Log("this is findAll");
-            root = GameObject.Find("Root");
-            transformArr = GameObject.FindObjectsOfType(typeof(Transform)) as Transform[];
-            transformList = new List<Transform>(transformArr);
-            objList = new List<GameObject>();
-            metaList = new List<Metadata>();
-            phases = new List<string>();
-            string curPhase;
-            currentCost = 0;
-            foreach (Transform tr in transformList)
+            if (transformList.Count == 0)
             {
-                GameObject go = tr.gameObject;
-                Debug.Log(go.name + "\n");
-                var meta = go.GetComponent<Metadata>();
-                if (go.transform.IsChildOf(root.transform)&& meta != null && meta.GetParameters().Count() >= 1)// && go.GetComponent<MeshRenderer>() != null)
+                Initialize();
+                string curPhase;
+                currentCost = 0;
+                foreach (Transform tr in transformList)
                 {
-                    objList.Add(go);
-                    go.AddComponent<MeshCollider>();
-                    metaList.Add(meta);
-                    if (go.name.Contains(strInput.text)) //Find all elements whose name includes...
+                    GameObject go = tr.gameObject;
+                    Debug.Log(go.name + "\n");
+                    var meta = go.GetComponent<Metadata>();
+                    if (go.transform.IsChildOf(root.transform) && meta != null && meta.GetParameters().Count() >= 1)// && go.GetComponent<MeshRenderer>() != null)
                     {
-                        Debug.Log(go.name + "\n");
-                        //go.SetActive(false);
-                    }
-                    Dictionary<string, Metadata.Parameter> dict = meta.GetParameters();
-                    //foreach (KeyValuePair<string, Metadata.Parameter> kvp in dict)
-                    //{
-                    //Debug.Log(kvp.Key);
-                    //}
-                    //currentCost += float.Parse(meta.GetParameter("Cost"));
-                    curPhase = meta.GetParameter(dropDownPhases.captionText.text);
-                    if (!phases.Contains(curPhase) && curPhase.Count() >= 1)
-                    {
-                        phases.Add(curPhase);
-                    }
-                    //phaseDict.Add(meta.GetParameter("Phase Created"), go);
+                        objList.Add(go);
+                        go.AddComponent<MeshCollider>();
+                        metaList.Add(meta);
+                        if (go.name.Contains(strInput.text)) //Find all elements whose name includes...
+                        {
+                            Debug.Log(go.name + "\n");
+                            //go.SetActive(false);
+                        }
+                        Dictionary<string, Metadata.Parameter> dict = meta.GetParameters();
+                        //foreach (KeyValuePair<string, Metadata.Parameter> kvp in dict)
+                        //{
+                        //Debug.Log(kvp.Key);
+                        //}
+                        //currentCost += float.Parse(meta.GetParameter("Cost"));
+                        curPhase = meta.GetParameter(dropDownPhases.captionText.text);
+                        if (!phases.Contains(curPhase) && curPhase.Count() >= 1)
+                        {
+                            phases.Add(curPhase);
+                        }
+                        //phaseDict.Add(meta.GetParameter("Phase Created"), go);
 
-                    //Debug.Log(meta.GetParameter("Phase Created"));
+                        //Debug.Log(meta.GetParameter("Phase Created"));
+                    }
+                    else
+                    {
+                        //transformList.Remove(tr);
+                    }
+                }
+                phases.Sort();
+                layers.Sort();
+                numPhases = phases.Count;
+                foreach (string str in phases)
+                {
+                    //Debug.Log(str);
+                }
+                //Debug.Log(numPhases);
+
+                if (numPhases >= 1)
+                {
+
                 }
                 else
                 {
-                    //transformList.Remove(tr);
+                    phases = layers;
+                    numPhases = numLayers;
+
                 }
-            }
-            phases.Sort();
-            layers.Sort();
-            numPhases = phases.Count;
-            foreach (string str in phases)
-            {
-                //Debug.Log(str);
-            }
-            //Debug.Log(numPhases);
+                slider.maxValue = numPhases;
+                slider.value = slider.maxValue;
 
-            if (numPhases >= 1)
-            {
-                
+                keyList = new List<string>(metaList[0].GetParameters().Keys);
+                Debug.Log(metaList[0].GetParameters().Keys.Count());
+                sortByDrop.ClearOptions();
+                sortByDrop.AddOptions(keyList);
+
+                UpdatePhasesShown();
             }
-            else
-            {
-                phases = layers;
-                numPhases = numLayers;
-
-            }
-            slider.maxValue = numPhases;
-            slider.value = slider.maxValue;
-
-            keyList = new List<string>(metaList[0].GetParameters().Keys);
-            Debug.Log(metaList[0].GetParameters().Keys.Count());
-            sortByDrop.ClearOptions();
-            sortByDrop.AddOptions(keyList);
-
-            UpdatePhasesShown();
         }
         public void SortCategories()
         { 
@@ -210,6 +207,22 @@ namespace UnityEngine.Reflect
             currentCostText.text = "Current cost: " + currentCost.ToString();
         }
 
+        public void ClearLists()
+        {
+            transformList = new List<Transform>();
+            objList = new List<GameObject>();
+            metaList = new List<Metadata>();
+            phases = new List<string>();
+        }
+        public void Initialize()
+        {
+            root = GameObject.Find("Root");
+            transformArr = GameObject.FindObjectsOfType(typeof(Transform)) as Transform[];
+            transformList = new List<Transform>(transformArr);
+            objList = new List<GameObject>();
+            metaList = new List<Metadata>();
+            phases = new List<string>();
+        }
 
         // Start is called before the first frame update
         void Start()
