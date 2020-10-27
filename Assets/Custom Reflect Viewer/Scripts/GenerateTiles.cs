@@ -65,6 +65,7 @@ public class GenerateTiles : MonoBehaviour
         compMat.EnableKeyword("_NORMALMAP");
         //compMat.SetTexture("_ParallaxMap", tileTextureNormal);
         compMat.mainTextureScale = new Vector2(1/totalWidth, 1/totalHeight);
+        //compMat.shader = Shader.Find("Diffuse");
     }
 
     // Start is called before the first frame update
