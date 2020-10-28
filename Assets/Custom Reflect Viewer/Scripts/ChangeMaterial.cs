@@ -67,7 +67,7 @@ namespace UnityEngine.Reflect
                 {
                     timeClick = Time.time;
                 }
-                if (Input.GetMouseButtonUp(1) && Time.time - timeClick < 0.3f) //right click
+                if ((Input.GetMouseButtonUp(1) && Time.time - timeClick < 0.3f) || (Input.touchCount > 2 && Input.touches[2].phase == TouchPhase.Began)) //right click
                 {
                     selectedObject = clickObjects();
                     Debug.Log(selectedObject.name);
@@ -97,13 +97,34 @@ namespace UnityEngine.Reflect
                         selectedObjectLocal.GetComponent<MeshRenderer>().material = newMaterial;
                     }
                 }
+                if ((Input.touchCount > 2 && Input.touches[2].phase == TouchPhase.Began)) //triple touch
+                {
+                    selectedObject = clickObjects();
+                    Debug.Log(selectedObject.name);
+                    var selectedMeta = selectedObject.GetComponent<Metadata>();
+                    //Dictionary<string, Metadata.Parameter> = selectedMeta.GetParameters;
+                    string selectedCostString = selectedMeta.GetParameter("Cost");
+                    //float selectedCost = float.Parse(selectedMeta.GetParameter("Cost"));
+                    showText.text = selectedObject.name + " with cost: " + selectedCostString;
+                    newMaterialCopy = new Material(selectedObject.GetComponent<Renderer>().material);
+                    newMaterialCopy.shader = Shader.Find("Unlit/Texture");
+                    newMaterialCopyImage.material = newMaterialCopy;
+                }
             }
         }
 
         GameObject clickObjects()
         {
+            Ray ray;
             GameObject target = null;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Input.touchCount > 2 && Input.touches[2].phase == TouchPhase.Began)
+            {
+                ray = Camera.main.ScreenPointToRay(Input.touches[2].position); //touch
+            }
+            else
+            {
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Mouse
+            }
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit)) // you can also only accept hits to some layer and put your selectable units in this layer
             {
@@ -159,7 +180,6 @@ namespace UnityEngine.Reflect
                     Material mat = new Material(matPossible[i]);
                     Material mat3D = new Material(matPossible[i]);
                     Image tempImg = materialImages[i];
-                    //Debug.Log(mat.name);
                     mat.shader = Shader.Find("UI/Default");
                     tempImg.material = mat;
                     RectTransform tempRect = (RectTransform)tempImg.transform;
