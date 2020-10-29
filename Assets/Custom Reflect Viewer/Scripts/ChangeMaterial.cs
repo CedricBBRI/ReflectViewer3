@@ -154,16 +154,17 @@ namespace UnityEngine.Reflect
         public void CreateUINew(GameObject go)
         {
             Vector3 imOffset = new Vector3(floatImgOffset[0], floatImgOffset[1], floatImgOffset[2]);
+            var meta = go.GetComponent<Metadata>();
             matPossible = new List<Material>();
-            if (go.name.Contains("Wall")) //If it's a wall, show wall material options
+            if (go.name.Contains("Wall") || meta.GetParameter("Category").Contains("Wall")) //If it's a wall, show wall material options
             {
                 matPossible = Resources.LoadAll("Materials/Wall", typeof(Material)).Cast<Material>().ToList();
             }
-            if (go.name.Contains("Floor"))
+            if (go.name.Contains("Floor") || meta.GetParameter("Category").Contains("Floor"))
             {
                 matPossible = Resources.LoadAll("Materials/Floor", typeof(Material)).Cast<Material>().ToList();
             }
-            if (go.name.Contains("Window"))
+            if (go.name.Contains("Window") || meta.GetParameter("Category").Contains("Window"))
             {
                 matPossible = Resources.LoadAll("Materials/Window", typeof(Material)).Cast<Material>().ToList();
             }
