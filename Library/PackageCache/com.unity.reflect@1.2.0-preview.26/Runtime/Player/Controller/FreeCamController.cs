@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.Reflect.Controller.Gestures;
 using UnityEngine.Reflect.Controller.Gestures.Desktop;
 using UnityEngine.Reflect.Controller.Gestures.Touch;
+using UnityEngine.UI;
 
 namespace UnityEngine.Reflect.Controller
 {
@@ -40,6 +41,8 @@ namespace UnityEngine.Reflect.Controller
         bool m_ElasticReturn = false;
         Vector3 m_ElasticPanPoint;
         Vector3 m_ElasticVelocity;
+
+        public Toggle togglyFly;
 
         public Vector3 Target
         {
@@ -252,6 +255,23 @@ namespace UnityEngine.Reflect.Controller
                     m_ElasticReturn = false;
                     Target = m_ElasticPanPoint;
                 }
+            }
+        }
+        public void AddPhysics()
+        {
+            var t = transform;
+            Rigidbody rb = t.gameObject.GetComponent<Rigidbody>();
+            if (togglyFly.isOn)
+            {
+                rb.isKinematic = true;
+                rb.detectCollisions = false;
+                rb.useGravity = false;
+            }
+            else
+            {
+                rb.isKinematic = false;
+                rb.detectCollisions = true;
+                rb.useGravity = true;
             }
         }
     }
