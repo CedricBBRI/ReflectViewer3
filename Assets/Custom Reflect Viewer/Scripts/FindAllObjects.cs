@@ -55,7 +55,9 @@ namespace UnityEngine.Reflect
                     if (go.transform.IsChildOf(root.transform) && meta != null && meta.GetParameters().Count() >= 1)// && go.GetComponent<MeshRenderer>() != null)
                     {
                         objList.Add(go);
-                        go.AddComponent<MeshCollider>();
+                        if (!meta.GetParameter("Category").Contains("Door")){
+                            go.AddComponent<MeshCollider>();
+                        }
                         metaList.Add(meta);
                         if (go.name.Contains(strInput.text)) //Find all elements whose name includes...
                         {

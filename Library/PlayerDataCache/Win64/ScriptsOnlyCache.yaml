@@ -85,7 +85,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
-    Assets/CustomViewerWTCB1_0.unity:
+    Assets/CustomViewerWTCB1_1.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -99,6 +99,8 @@ ScriptsOnlyBuild:
     - Class: 48
       Script: {instanceID: 0}
     - Class: 49
+      Script: {instanceID: 0}
+    - Class: 54
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
@@ -251,6 +253,8 @@ ScriptsOnlyBuild:
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -1089,5 +1093,5 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 19
   scenePathNames:
-  - Assets/CustomViewerWTCB1_0.unity
+  - Assets/CustomViewerWTCB1_1.unity
   playerPath: C:/Users/cdri/ReflectViewer3_2/ReflectViewer3.exe

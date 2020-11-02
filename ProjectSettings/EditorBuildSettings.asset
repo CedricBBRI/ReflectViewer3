@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Reflect Custom Viewer.unity
     guid: 49271f8aff53be2419af3fb595504b84
-  - enabled: 1
+  - enabled: 0
     path: Assets/CustomViewerWTCB1_0.unity
     guid: b7711585b2d080c499557ca3f93e07bf
+  - enabled: 1
+    path: Assets/CustomViewerWTCB1_1.unity
+    guid: 401d5c5b5a18e604fb56fac6eaa9557e
   m_configObjects: {}
