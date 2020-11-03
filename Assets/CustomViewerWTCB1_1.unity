@@ -19885,7 +19885,7 @@ MonoBehaviour:
   sliderWidth2: {fileID: 1676970899}
   sliderHeight2: {fileID: 1676970899}
   resolutionTexture: 1024
-  tileColor: {r: 0.7264151, g: 0.7033916, b: 0.099368125, a: 1}
+  tileColor: {r: 0.6037736, g: 0.1622515, b: 0.06550375, a: 1}
   mortarColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
   tileTexture: {fileID: 2800000, guid: 8f787c82037108a4e8381303a9e79c72, type: 3}
   textW1: {fileID: 192886711}
@@ -25976,9 +25976,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 1.75
   m_Direction: 1
-  m_Center: {x: 0, y: -1.07, z: 0}
+  m_Center: {x: 0, y: -0.8, z: 0}
 --- !u!54 &9015670273966375921
 Rigidbody:
   m_ObjectHideFlags: 0

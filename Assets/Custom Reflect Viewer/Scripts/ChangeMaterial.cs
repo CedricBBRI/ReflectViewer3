@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Linq;
 
@@ -110,6 +106,14 @@ namespace UnityEngine.Reflect
                     newMaterialCopy.shader = Shader.Find("Unlit/Texture");
                     newMaterialCopyImage.material = newMaterialCopy;
                 }
+                if (Input.GetKeyDown("e"))
+                {
+                    ToggleLight();
+                }
+                if (Input.GetKeyDown("r"))
+                {
+                    ToggleAllLight();
+                }
             }
         }
 
@@ -196,5 +200,53 @@ namespace UnityEngine.Reflect
             selectedObject.GetComponent<MeshRenderer>().material = mat;
         }
 
+
+        public void ToggleLight()
+        {
+            GameObject go = selectedObject;
+            var meta = go.GetComponent<Metadata>();
+            if (meta.GetParameter("Category").Contains("Light"))
+            {
+                foreach (Transform child in go.transform)
+                {
+                    Light light = child.gameObject.GetComponent(typeof(Light)) as Light;
+                    if (light.enabled)
+                    {
+                        light.enabled = false;
+                    }
+                    else
+                    {
+                        light.enabled = true;
+                    }
+                }
+            }
+        }
+
+        public void ToggleAllLight()
+        {
+            GameObject root = GameObject.Find("Root");
+            Transform[] transList = root.GetComponentsInChildren<Transform>();
+            foreach (Transform allObj in transList)
+            { 
+            GameObject go = allObj.gameObject;
+            Debug.Log(go.name);
+            var meta = go.GetComponent<Metadata>();
+            if (meta != null && meta.GetParameter("Category").Contains("Light"))
+                {
+                    foreach (Transform child in go.transform)
+                    {
+                        Light light = child.gameObject.GetComponent(typeof(Light)) as Light;
+                        if (light.enabled)
+                        {
+                            light.enabled = false;
+                        }
+                        else
+                        {
+                            light.enabled = true;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

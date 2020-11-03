@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine.UI;
-using UnityEngine;
-using System.Reflection;
 using System.Linq;
-using TMPro;
 
 namespace UnityEngine.Reflect
 {
@@ -225,6 +220,7 @@ namespace UnityEngine.Reflect
             metaList = new List<Metadata>();
             phases = new List<string>();
         }
+
 
         // Start is called before the first frame update
         void Start()
