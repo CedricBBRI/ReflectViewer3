@@ -71,10 +71,12 @@ namespace UnityEngine.Reflect
                     //Dictionary<string, Metadata.Parameter> = selectedMeta.GetParameters;
                     string selectedCostString = selectedMeta.GetParameter("Cost");
                     //float selectedCost = float.Parse(selectedMeta.GetParameter("Cost"));
-                    showText.text = selectedObject.name + " with cost: " + selectedCostString;
+                    showText.text = selectedObject.name;// + " with cost: " + selectedCostString;
                     newMaterialCopy = new Material(selectedObject.GetComponent<Renderer>().material);
                     newMaterialCopy.shader = Shader.Find("Unlit/Texture");
                     newMaterialCopyImage.material = newMaterialCopy;
+
+
                 }
                 if (Input.GetMouseButtonUp(1) && Input.GetKey(KeyCode.LeftControl)) //right click and ctrl
                 {
@@ -172,6 +174,10 @@ namespace UnityEngine.Reflect
             {
                 matPossible = Resources.LoadAll("Materials/Window", typeof(Material)).Cast<Material>().ToList();
             }
+            if (go.name.Contains("Ceiling") || meta.GetParameter("Category").Contains("Ceiling"))
+            {
+                matPossible = Resources.LoadAll("Materials/Wall", typeof(Material)).Cast<Material>().ToList();
+            }
             for (int i = 0; i < materialImages.Count(); i++)
             {
                 materialImages[i].transform.position = new Vector3(0f, -10000f, 0f);
@@ -197,6 +203,16 @@ namespace UnityEngine.Reflect
 
         public void ChangeMaterialClick(Material mat)
         {
+
+            foreach (Renderer rend in selectedObject.GetComponents<Renderer>())
+            {
+                var mats = new Material[rend.materials.Length];
+                for (var j = 0; j < rend.materials.Length; j++)
+                {
+                    mats[j] = mat;
+                }
+                rend.materials = mats;
+            }
             selectedObject.GetComponent<MeshRenderer>().material = mat;
         }
 
@@ -247,6 +263,10 @@ namespace UnityEngine.Reflect
                     }
                 }
             }
+        }
+        public void ReplaceMaterials(Material newMat)
+        {
+
         }
     }
 }
