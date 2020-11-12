@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - ReflectProjectViewInfoPanel
     - SliderInputField
     - UnityEngine.Reflect.ChangeMaterial
+    - UnityEngine.Reflect.Controller.FreeCamController
     - UnityEngine.Reflect.Extensions.CompletionDateSlider
     - UnityEngine.Reflect.FindAllObjects
     Unity.Postprocessing.Runtime.dll:
@@ -31,7 +32,6 @@ ScriptsOnlyBuild:
     - ProgressBar
     - Teleport
     - UnityEngine.Reflect.AlertDialog
-    - UnityEngine.Reflect.Controller.FreeCamController
     - UnityEngine.Reflect.DisplayModeTopMenu
     - UnityEngine.Reflect.ListControl
     - UnityEngine.Reflect.ListControlItem
@@ -231,8 +231,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13038}
     - Class: 114
-      Script: {instanceID: 13218}
-    - Class: 114
       Script: {instanceID: 13268}
     - Class: 114
       Script: {instanceID: 13436}
@@ -250,6 +248,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13704}
     - Class: 114
       Script: {instanceID: 13724}
+    - Class: 114
+      Script: {instanceID: 35242}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -907,7 +907,7 @@ ScriptsOnlyBuild:
     className: SyncObjectBinding
   - hash:
       serializedVersion: 2
-      Hash: caa057b3303423a8a5422c763f8447e1
+      Hash: ec3e3894130d1a4fc8821d826ff3a5db
     assemblyName: Unity.Reflect.dll
     namespaceName: UnityEngine.Reflect.Controller
     className: FreeCamController
@@ -949,7 +949,7 @@ ScriptsOnlyBuild:
     className: MarkerTrack
   - hash:
       serializedVersion: 2
-      Hash: 6a49a6f55437f51a8eaf6524f6786d10
+      Hash: 5b72b0eec1fc8cf35180cee0c248897d
     assemblyName: Assembly-CSharp.dll
     namespaceName: UnityEngine.Reflect
     className: ChangeMaterial
@@ -1091,6 +1091,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: ec3e3894130d1a4fc8821d826ff3a5db
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: UnityEngine.Reflect.Controller
+    className: FreeCamController
   platform: 19
   scenePathNames:
   - Assets/CustomViewerWTCB1_1.unity

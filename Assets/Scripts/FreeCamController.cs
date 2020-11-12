@@ -8,9 +8,9 @@ using UnityEngine.UI;
 namespace UnityEngine.Reflect.Controller
 {
     [Serializable]
-    public class DoubleClickOrTapEvent : UnityEvent<Vector2>
-    {
-    }
+    //public class DoubleClickOrTapEvent : UnityEvent<Vector2>
+    //{
+//    }
     
     public class FreeCamController : Controller
     {

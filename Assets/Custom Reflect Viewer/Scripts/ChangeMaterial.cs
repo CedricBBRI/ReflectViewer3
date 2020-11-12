@@ -32,7 +32,7 @@ namespace UnityEngine.Reflect
         void Start()
         {
             timeClick = Time.time;
-            for (int i = 1; i < 100; i++)
+            for (int i = 1; i < 300; i++)
             {
                 Image tempImg = Instantiate(newMaterialCopyImage, newMaterialCopyImage.transform.parent);
                 materialImages.Add(tempImg);
@@ -200,10 +200,11 @@ namespace UnityEngine.Reflect
                     Material mat = new Material(matPossible[i]);
                     Material mat3D = new Material(matPossible[i]);
                     Image tempImg = materialImages[i];
+                    int maxSqrt = Mathf.FloorToInt(Mathf.Sqrt(matPossible.Count()));
                     mat.shader = Shader.Find("UI/Default");
                     tempImg.material = mat;
                     RectTransform tempRect = (RectTransform)tempImg.transform;
-                    tempImg.transform.position = mainCam.WorldToScreenPoint(hitPoint) + imOffset + new Vector3(0f, -(tempRect.rect.height+40f) * i, 0f);
+                    tempImg.transform.position = mainCam.WorldToScreenPoint(hitPoint) + imOffset + new Vector3(0f + Mathf.Floor(i/maxSqrt)* (tempRect.rect.width + 40f), -(tempRect.rect.height+40f) * (i- Mathf.Floor(i / maxSqrt)*maxSqrt), 0f);
                     tempImg.GetComponent<Button>().onClick.AddListener(() => ChangeMaterialClick(mat3D));
                     materialImages[i] = tempImg;
                 }
