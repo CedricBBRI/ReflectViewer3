@@ -25882,7 +25882,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  togglyFly: {fileID: 1863906471}
 --- !u!20 &9015670273966375914
 Camera:
   m_ObjectHideFlags: 0
@@ -26216,7 +26215,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9163836744210443679}
   m_HandleRect: {fileID: 9163836744210443672}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

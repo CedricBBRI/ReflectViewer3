@@ -66,7 +66,7 @@ namespace UnityEngine.Reflect
                 if ((Input.GetMouseButtonUp(1) && Time.time - timeClick < 0.3f) || (Input.touchCount > 2 && Input.touches[2].phase == TouchPhase.Began)) //right click
                 {
                     selectedObject = clickObjects();
-                    Debug.Log(selectedObject.name);
+                    //Debug.Log(selectedObject.name);
                     var selectedMeta = selectedObject.GetComponent<Metadata>();
                     //Dictionary<string, Metadata.Parameter> = selectedMeta.GetParameters;
                     string selectedCostString = selectedMeta.GetParameter("Cost");
