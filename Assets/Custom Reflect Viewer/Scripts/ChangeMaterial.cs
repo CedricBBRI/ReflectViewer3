@@ -21,6 +21,7 @@ namespace UnityEngine.Reflect
         private Vector3 hitPoint;
 
         public List<Material> matPossible;
+        public List<Texture> texPossible;
         public List<Image> materialImages;
 
         float timeClick;
@@ -162,25 +163,33 @@ namespace UnityEngine.Reflect
             Vector3 imOffset = new Vector3(floatImgOffset[0], floatImgOffset[1], floatImgOffset[2]);
             var meta = go.GetComponent<Metadata>();
             matPossible = new List<Material>();
+            texPossible = new List<Texture>();
             if (go.name.Contains("Wall") || meta.GetParameter("Category").Contains("Wall")) //If it's a wall, show wall material options
             {
-                matPossible = Resources.LoadAll("Materials/Wall", typeof(Material)).Cast<Material>().ToList();
+                matPossible.AddRange(Resources.LoadAll("Materials/Wall", typeof(Material)).Cast<Material>().ToList());
+                texPossible.AddRange(Resources.LoadAll("Materials/Tiles", typeof(Texture)).Cast<Texture>().ToList());
             }
             if (go.name.Contains("Floor") || meta.GetParameter("Category").Contains("Floor"))
             {
-                matPossible = Resources.LoadAll("Materials/Floor", typeof(Material)).Cast<Material>().ToList();
+                matPossible.AddRange(Resources.LoadAll("Materials/Floor", typeof(Material)).Cast<Material>().ToList());
             }
             if (go.name.Contains("Window") || meta.GetParameter("Category").Contains("Window"))
             {
-                matPossible = Resources.LoadAll("Materials/Window", typeof(Material)).Cast<Material>().ToList();
+                matPossible.AddRange(Resources.LoadAll("Materials/Window", typeof(Material)).Cast<Material>().ToList());
             }
             if (go.name.Contains("Ceiling") || meta.GetParameter("Category").Contains("Ceiling"))
             {
-                matPossible = Resources.LoadAll("Materials/Wall", typeof(Material)).Cast<Material>().ToList();
+                matPossible.AddRange(Resources.LoadAll("Materials/Wall", typeof(Material)).Cast<Material>().ToList());
             }
             for (int i = 0; i < materialImages.Count(); i++)
             {
                 materialImages[i].transform.position = new Vector3(0f, -10000f, 0f);
+            }
+            foreach(Texture tex in texPossible)
+            {
+                Material tempMat = new Material(Shader.Find("Standard"));
+                tempMat.mainTexture = tex;
+                matPossible.Add(tempMat);
             }
             if(matPossible.Count() >= 1)
             {

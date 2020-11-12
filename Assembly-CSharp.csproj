@@ -77,6 +77,7 @@
     <Compile Include="Assets\Custom Reflect Viewer\Scripts\Managers\Metadata\StaticMetadataBehavior.cs" />
     <Compile Include="Assets\Custom Reflect Viewer\Scripts\Managers\ReflectEventsManager.cs" />
     <Compile Include="Assets\Custom Reflect Viewer\Scripts\TopMenus\CompletionTopMenu.cs" />
+    <Compile Include="Assets\Scripts\FreeCamController.cs" />
     <Compile Include="Assets\Scripts\OnStartEvent.cs" />
     <Compile Include="Assets\Scripts\ReflectProjectViewInfoPanel.cs" />
     <Compile Include="Assets\Scripts\SliderInputField.cs" />

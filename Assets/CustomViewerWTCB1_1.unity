@@ -5236,6 +5236,7 @@ MonoBehaviour:
   - 0
   - 0
   matPossible: []
+  texPossible: []
   materialImages: []
 --- !u!64 &1246789259
 MeshCollider:
@@ -8440,7 +8441,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9015670273966375912}
+      - m_Target: {fileID: 0}
         m_MethodName: AddPhysics
         m_Mode: 1
         m_Arguments:
@@ -13410,7 +13411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCanvas: {fileID: 5058108283040391874}
   EventSystem: {fileID: 5058108282959215055}
-  FreeCamController: {fileID: 9015670273966375912}
+  FreeCamController: {fileID: 0}
   SettingsMenu: {fileID: 2218661335147182516}
 --- !u!224 &3017619083364763286
 RectTransform:
@@ -16153,7 +16154,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9015670273966375912}
+      - m_Target: {fileID: 0}
         m_MethodName: ResetPosition
         m_Mode: 1
         m_Arguments:
@@ -22842,7 +22843,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 9015670273966375912}
+      - m_Target: {fileID: 9015670273966375922}
         m_MethodName: AddPhysics
         m_Mode: 1
         m_Arguments:
@@ -25844,44 +25845,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8013196732184757083}
   m_CullTransparentMesh: 0
---- !u!114 &9015670273966375912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9015670273966375919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38b5280cede22314ab3b933e2ad3d41c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DesktopScrollSensitivity: 5
-  DesktopAltZoomSensitivity: 1
-  DesktopPanSensitivity: 0.003
-  DesktopRotateAroundPivotSensitivity: 0.02
-  DesktopRotateCameraSensitivity: 0.08
-  DesktopMoveSensitivity: {x: 0.4, y: 0.4}
-  DesktopShiftFactor: 2
-  TouchZoomSensitivity: 100
-  TouchZoomThreshold: 0.01
-  TouchPanSensitivity: 200
-  TouchPanThreshold: 0.03
-  TouchRotateSensitivity: 500
-  m_OnDoubleClickOrTap:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9015670273966375912}
-        m_MethodName: AddPhysics
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!20 &9015670273966375914
 Camera:
   m_ObjectHideFlags: 0
@@ -25949,7 +25912,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9015670273966375915}
   - component: {fileID: 9015670273966375914}
-  - component: {fileID: 9015670273966375912}
   - component: {fileID: 4866893250464227528}
   - component: {fileID: 3929147770443170658}
   - component: {fileID: 5953945824750594618}
@@ -25957,6 +25919,7 @@ GameObject:
   - component: {fileID: 5953945824955921312}
   - component: {fileID: 9015670273966375921}
   - component: {fileID: 9015670273966375920}
+  - component: {fileID: 9015670273966375922}
   m_Layer: 8
   m_Name: FreeCamController
   m_TagString: MainCamera
@@ -25994,6 +25957,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &9015670273966375922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9015670273966375919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e959294984c9d034ca484e350c3277e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DesktopScrollSensitivity: 5
+  DesktopAltZoomSensitivity: 1
+  DesktopPanSensitivity: 0.003
+  DesktopRotateAroundPivotSensitivity: 0.05
+  DesktopRotateCameraSensitivity: 0.15
+  DesktopMoveSensitivity: {x: 0.5, y: 0.5}
+  DesktopShiftFactor: 3
+  TouchZoomSensitivity: 100
+  TouchZoomThreshold: 0.01
+  TouchPanSensitivity: 200
+  TouchPanThreshold: 0.03
+  TouchRotateSensitivity: 500
+  m_OnDoubleClickOrTap:
+    m_PersistentCalls:
+      m_Calls: []
+  togglyFly: {fileID: 1863906471}
 --- !u!222 &9056375739552745294
 CanvasRenderer:
   m_ObjectHideFlags: 0
