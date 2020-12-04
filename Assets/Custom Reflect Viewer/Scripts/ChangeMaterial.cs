@@ -28,6 +28,13 @@ namespace UnityEngine.Reflect
 
         GameObject root;// = GameObject.Find("Root");
 
+        public int mortarWidth = 4;
+        public Color mortarColor;
+
+        public Color32[] pix;
+
+        public RenderTexture rendTex;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -144,20 +151,6 @@ namespace UnityEngine.Reflect
             return target;
         }
 
-        public void CreateUI(GameObject go)
-        {
-
-            Vector3 nameOffset = new Vector3(floatNameOffset[0], floatNameOffset[1], floatNameOffset[2]);
-            Vector3 imOffset = new Vector3(floatImgOffset[0], floatImgOffset[1], floatImgOffset[2]);
-            floatName.text = go.name;
-            floatName.transform.position = mainCam.WorldToScreenPoint(hitPoint) + nameOffset;
-            newMaterialCopyImage.transform.position = mainCam.WorldToScreenPoint(hitPoint) + imOffset;
-            Material tempMat = new Material(newMaterial);
-            newMaterialCopyImage.material = tempMat;
-            tempMat.shader = Shader.Find("Unlit/Texture");
-            newMaterialCopyImage.GetComponent<Button>().onClick.AddListener(() => ChangeMaterialClick(newMaterial));
-        }
-
         public void CreateUINew(GameObject go)
         {
             Vector3 imOffset = new Vector3(floatImgOffset[0], floatImgOffset[1], floatImgOffset[2]);
@@ -213,7 +206,10 @@ namespace UnityEngine.Reflect
 
         public void ChangeMaterialClick(Material mat)
         {
-
+            Texture2D texMort = (Texture2D) mat.mainTexture;
+            //texMort = AddMortar(texMort); //VERY SLOW WHY?
+            //Graphics.Blit(texMort, rendTex, new Vector2(1.2f, 1.2f), new Vector2(0.05f, 0.05f));
+            mat.mainTexture = texMort;
             foreach (Renderer rend in selectedObject.GetComponents<Renderer>())
             {
                 var mats = new Material[rend.materials.Length];
@@ -226,6 +222,93 @@ namespace UnityEngine.Reflect
             selectedObject.GetComponent<MeshRenderer>().material = mat;
         }
 
+
+        public Texture2D AddMortarN(Texture2D tex)
+        {
+            Texture2D newTex = new Texture2D(tex.width+mortarWidth, tex.height+mortarWidth);// + mortarWidth, tex.height + mortarWidth);
+            int i, j;
+            newTex.SetPixels(tex.GetPixels());
+            for (i = 0; i < newTex.width; i++)
+            {
+                for (j = 0; j < newTex.height; j++)
+                {
+                    if (i >= tex.width-mortarWidth || j >= tex.height-mortarWidth) //(i < (int)Mathf.Round(mortarWidth / 2f) || j < (int)Mathf.Round(mortarWidth / 2f) || i >= newTex.width - (int)Mathf.Round(mortarWidth / 2f) || j >= newTex.height - (int)Mathf.Round(mortarWidth / 2f))
+                    {
+                       newTex.SetPixel(i, j, mortarColor);
+                    }
+                    else
+                    {
+                        //newTex.SetPixels(tex.GetPixels());//(i, j, tex.GetPixel(i - (int)Mathf.Round(mortarWidth / 2f), j - (int)Mathf.Round(mortarWidth / 2f)));
+                    }
+                }
+            }
+            newTex.Apply();
+            return newTex;
+        }
+        public Texture2D AddMortarN2(Texture2D tex)
+        {
+            Texture2D newTex = new Texture2D(tex.width, tex.height);// + mortarWidth, tex.height + mortarWidth);
+            //pix = tex.GetPixels32();
+            //newTex.SetPixels32(pix);
+            //newTex.Apply();
+            for (int i = 0; i < newTex.width; i++)
+            {
+                for (int j = 0; j < newTex.height; j++)
+                {
+                    if (i >= tex.width-mortarWidth || j >= tex.height-mortarWidth) //(i < (int)Mathf.Round(mortarWidth / 2f) || j < (int)Mathf.Round(mortarWidth / 2f) || i >= newTex.width - (int)Mathf.Round(mortarWidth / 2f) || j >= newTex.height - (int)Mathf.Round(mortarWidth / 2f))
+                    {
+                        newTex.SetPixel(i, j, mortarColor);
+                    }
+                    else
+                    {
+                        newTex.SetPixel(i, j, tex.GetPixel(i*(tex.width-mortarWidth)/tex.width, j* (tex.height - mortarWidth) / tex.height));
+                    }
+                }
+            }
+            newTex.Apply();
+            return newTex;
+        }
+        public Texture2D AddMortar(Texture2D tex)
+        {
+            Texture2D newTex = new Texture2D(tex.width + mortarWidth, tex.height + mortarWidth);
+            for (int i = 0; i < newTex.width; i++)
+            {
+                for (int j = 0; j < newTex.height; j++)
+                {
+                    if (i < (int)Mathf.Round(mortarWidth / 2f) || j < (int)Mathf.Round(mortarWidth / 2f) || i >= newTex.width - (int)Mathf.Round(mortarWidth / 2f) || j >= newTex.height - (int)Mathf.Round(mortarWidth / 2f))
+                    {
+                        newTex.SetPixel(i, j, mortarColor);
+                    }
+                    else
+                    {
+                        newTex.SetPixel(i, j, tex.GetPixel(i - (int)Mathf.Round(mortarWidth / 2f), j - (int)Mathf.Round(mortarWidth / 2f)));
+                    }
+                }
+            }
+            newTex.Apply();
+            return newTex;
+        }
+        public Texture2D AddMortarCopyTexture(Texture2D tex)
+        {
+            Texture2D newTex = new Texture2D(tex.width + mortarWidth, tex.height + mortarWidth);
+            Graphics.CopyTexture(tex, newTex);
+            for (int i = 0; i < newTex.width; i++)
+            {
+                for (int j = 0; j < newTex.height; j++)
+                {
+                    if (i < (int)Mathf.Round(mortarWidth / 2f) || j < (int)Mathf.Round(mortarWidth / 2f) || i >= newTex.width - (int)Mathf.Round(mortarWidth / 2f) || j >= newTex.height - (int)Mathf.Round(mortarWidth / 2f))
+                    {
+                        newTex.SetPixel(i, j, mortarColor);
+                    }
+                    else
+                    {
+                        //newTex.SetPixel(i, j, tex.GetPixel(i - (int)Mathf.Round(mortarWidth / 2f), j - (int)Mathf.Round(mortarWidth / 2f)));
+                    }
+                }
+            }
+            newTex.Apply();
+            return newTex;
+        }
 
         public void ToggleLight()
         {
@@ -253,11 +336,11 @@ namespace UnityEngine.Reflect
             GameObject root = GameObject.Find("Root");
             Transform[] transList = root.GetComponentsInChildren<Transform>();
             foreach (Transform allObj in transList)
-            { 
-            GameObject go = allObj.gameObject;
-            Debug.Log(go.name);
-            var meta = go.GetComponent<Metadata>();
-            if (meta != null && meta.GetParameter("Category").Contains("Light"))
+            {
+                GameObject go = allObj.gameObject;
+                Debug.Log(go.name);
+                var meta = go.GetComponent<Metadata>();
+                if (meta != null && meta.GetParameter("Category").Contains("Light"))
                 {
                     foreach (Transform child in go.transform)
                     {
@@ -273,10 +356,6 @@ namespace UnityEngine.Reflect
                     }
                 }
             }
-        }
-        public void ReplaceMaterials(Material newMat)
-        {
-
         }
     }
 }
