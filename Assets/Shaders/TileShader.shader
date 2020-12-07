@@ -44,14 +44,16 @@
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D(_MainTex, IN.uv_MainTex*(1+ _MortarSize) - float2(floor(IN.uv_MainTex.r) * _MortarSize, floor(IN.uv_MainTex.g) * _MortarSize))* _Color;
+            float scale = 1 / (1 + _MortarSize);
+            float2 scaledTex = IN.uv_MainTex  - float2(floor(IN.uv_MainTex.r*scale) * _MortarSize, floor(IN.uv_MainTex.g*scale) * _MortarSize);
+            fixed4 c = tex2D(_MainTex, scaledTex);
             fixed4 c2 = tex2D(_EdgeTex, IN.uv_EdgeTex) * _Color;
 
             o.Albedo = c.rgb;
-            if (fmod(IN.uv_MainTex.r+_MortarSize+10000, 1) < _MortarSize) {
+            if (fmod(IN.uv_MainTex.r+_MortarSize+10000/scale, 1/scale) < _MortarSize) {
                 o.Albedo = c2.rgb;
             }
-            if (fmod(IN.uv_MainTex.g + _MortarSize +10000, 1) < _MortarSize) {
+            if (fmod(IN.uv_MainTex.g+ _MortarSize+10000/scale, 1 / scale) < _MortarSize) {
                 o.Albedo = c2.rgb;
             }
             // Metallic and smoothness come from slider variables

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Tiling marble Mat
-  m_Shader: {fileID: 4, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 7cfd54dbbb7820b4da41a107dd0cf5b9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -23,11 +23,18 @@ Material:
         m_Texture: {fileID: 2800000, guid: 4ea7c75ae148a194bb08ca72ebb31d26, type: 3}
         m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
+    - _EdgeTex:
+        m_Texture: {fileID: 2800000, guid: 6046ad94b7866b54e95087f8c9c99322, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bad77257ebf6a3f4487ed215430805b8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 937379304d01d6448ae29d981b12edb3, type: 3}
         m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Glossiness: 0.5
+    - _Metallic: 0
+    - _MortarSize: 0.027
     - _Shininess: 0.20611542
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

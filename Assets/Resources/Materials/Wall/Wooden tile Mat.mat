@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EdgeTex:
-        m_Texture: {fileID: 2800000, guid: 6046ad94b7866b54e95087f8c9c99322, type: 3}
+        m_Texture: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -35,10 +35,10 @@ Material:
     - _Glossiness: 0.5
     - _Index: 0
     - _Metallic: 0
-    - _MortarSize: 0.05
+    - _MortarSize: 0.113
     - _RotationSpeed: 2
     - _Shininess: 0.078125
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0, b: 0.69310665, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Tiles: {r: 8, g: 8, b: 0.125, a: 0.125}
