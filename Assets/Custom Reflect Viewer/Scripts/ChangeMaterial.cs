@@ -180,14 +180,12 @@ namespace UnityEngine.Reflect
             }
             foreach(Texture tex in texPossible)
             {
-                Material tempMat = new Material(Shader.Find("Standard"));
+                Material tempMat = new Material(Shader.Find("Custom/TileShader"));
                 tempMat.mainTexture = tex;
                 matPossible.Add(tempMat);
             }
             if(matPossible.Count() >= 1)
             {
-                //Debug.Log("possible materials found");
-                //Debug.Log(materialImages.Count().ToString() + " " + matPossible.Count().ToString());
                 for (int i = 0; i < matPossible.Count(); i++)// Material mat in matPossible)
                 {
                     Material mat = new Material(matPossible[i]);

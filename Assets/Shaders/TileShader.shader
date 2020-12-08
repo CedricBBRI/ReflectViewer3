@@ -5,7 +5,7 @@
         _Color("Color", Color) = (1,1,1,1)
         _MainTex("Albedo (RGB)", 2D) = "white" {}
         _EdgeTex("Albedo (RGB)", 2D) = "white" {}
-        _MortarSize("Mortar Size", Range(0,1)) = 0.5
+        _MortarSize("Mortar Size", Range(0,1)) = 0.02
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
     }
@@ -33,6 +33,7 @@
         half _Glossiness;
         half _Metallic;
         fixed4 _Color;
+        float _ExtrudeVal;
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -50,16 +51,23 @@
             fixed4 c2 = tex2D(_EdgeTex, IN.uv_EdgeTex) * _Color;
 
             o.Albedo = c.rgb;
+            _ExtrudeVal = 1;
             if (fmod(IN.uv_MainTex.r+_MortarSize+10000/scale, 1/scale) < _MortarSize) {
                 o.Albedo = c2.rgb;
+                _ExtrudeVal = 0;
             }
-            if (fmod(IN.uv_MainTex.g+ _MortarSize+10000/scale, 1 / scale) < _MortarSize) {
+            if (fmod(IN.uv_MainTex.g+_MortarSize+10000/scale, 1/scale) < _MortarSize) {
                 o.Albedo = c2.rgb;
+                _ExtrudeVal = 0;
             }
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
+        }
+
+        void vert(inout appdata_full v) { //WHY DOESNT THIS WORK?
+            v.vertex.xyz += v.normal * _ExtrudeVal;
         }
         ENDCG
     }
