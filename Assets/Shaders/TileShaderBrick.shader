@@ -5,6 +5,7 @@
         _Color("Color", Color) = (1,1,1,1)
         _MainTex("Albedo (RGB)", 2D) = "white" {}
         _EdgeTex("Albedo (RGB)", 2D) = "white" {}
+        //[NoScaleOffset] _NormalMap("Normals", 2D) = "bump" {}
         _MortarSize("Mortar Size", Range(0,1)) = 0.02
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
@@ -23,6 +24,7 @@
 
         sampler2D _MainTex;
         sampler2D _EdgeTex;
+        //sampler2D _NormalMap;
 
         struct Input
         {

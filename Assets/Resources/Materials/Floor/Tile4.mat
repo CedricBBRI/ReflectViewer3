@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Tile4
-  m_Shader: {fileID: 4800000, guid: 7cfd54dbbb7820b4da41a107dd0cf5b9, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5a365585e5c5d354387d10aa7e8ef7d2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

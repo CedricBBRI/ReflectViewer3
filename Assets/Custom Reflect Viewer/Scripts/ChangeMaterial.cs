@@ -35,6 +35,8 @@ namespace UnityEngine.Reflect
 
         public RenderTexture rendTex;
 
+        public Dropdown mortarSizeDrop;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -178,10 +180,12 @@ namespace UnityEngine.Reflect
             {
                 materialImages[i].transform.position = new Vector3(0f, -10000f, 0f);
             }
+            float[] mortarWidthArray = { 0.01f, 0.03f, 0.1f };
             foreach(Texture tex in texPossible)
             {
                 Material tempMat = new Material(Shader.Find("Custom/TileShader"));
                 tempMat.mainTexture = tex;
+                tempMat.SetFloat("_MortarSize", mortarWidthArray[mortarSizeDrop.value]);
                 matPossible.Add(tempMat);
             }
             if(matPossible.Count() >= 1)
