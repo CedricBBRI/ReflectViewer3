@@ -94,7 +94,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
     - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
@@ -103,6 +109,8 @@ ScriptsOnlyBuild:
     - Class: 54
       Script: {instanceID: 0}
     - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
       Script: {instanceID: 0}
     - Class: 72
       Script: {instanceID: 0}
@@ -957,7 +965,7 @@ ScriptsOnlyBuild:
     className: MarkerTrack
   - hash:
       serializedVersion: 2
-      Hash: 5fd1e8fb10e997dda97fdd81af636458
+      Hash: 15837974fa7b21e2e61dc16e1c01bba1
     assemblyName: Assembly-CSharp.dll
     namespaceName: UnityEngine.Reflect
     className: ChangeMaterial

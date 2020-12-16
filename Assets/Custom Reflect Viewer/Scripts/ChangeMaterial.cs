@@ -37,6 +37,8 @@ namespace UnityEngine.Reflect
 
         public Dropdown mortarSizeDrop;
 
+        public GameObject replacementTest;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -90,20 +92,8 @@ namespace UnityEngine.Reflect
                 }
                 if (Input.GetMouseButtonUp(1) && Input.GetKey(KeyCode.LeftControl)) //right click and ctrl
                 {
-                    GameObject selectedObjectLocal = clickObjects();
-                    Debug.Log(selectedObjectLocal.name);
-                    var selectedMeta = selectedObjectLocal.GetComponent<Metadata>();
-                    string selectedCostString = selectedMeta.GetParameter("Cost");
-                    //float selectedCost = float.Parse(selectedMeta.GetParameter("Cost"));
-                    //showText.text = selectedObject.name + " with cost: " + selectedCostString;
-                    if(Input.GetKey(KeyCode.LeftAlt))
-                    {
-                        selectedObjectLocal.GetComponent<MeshRenderer>().material = newMaterialCopy;
-                    }
-                    else
-                    {
-                        selectedObjectLocal.GetComponent<MeshRenderer>().material = newMaterial;
-                    }
+                    selectedObject = clickObjects();
+                    ReplaceObject();
                 }
                 if ((Input.touchCount > 2 && Input.touches[2].phase == TouchPhase.Began)) //triple touch
                 {
@@ -209,8 +199,6 @@ namespace UnityEngine.Reflect
         public void ChangeMaterialClick(Material mat)
         {
             Texture2D texMort = (Texture2D) mat.mainTexture;
-            //texMort = AddMortar(texMort); //VERY SLOW WHY?
-            //Graphics.Blit(texMort, rendTex, new Vector2(1.2f, 1.2f), new Vector2(0.05f, 0.05f));
             mat.mainTexture = texMort;
             foreach (Renderer rend in selectedObject.GetComponents<Renderer>())
             {
@@ -224,92 +212,21 @@ namespace UnityEngine.Reflect
             selectedObject.GetComponent<MeshRenderer>().material = mat;
         }
 
+        public void ReplaceObject()
+        {
+            GameObject go = selectedObject;
+            float sizeX = go.GetComponent<Renderer>().bounds.size.x;
+            float sizeY = go.GetComponent<Renderer>().bounds.size.y;
+            float sizeZ = go.GetComponent<Renderer>().bounds.size.z;
+            Vector3 loc = go.GetComponent<Renderer>().bounds.center;
+            Debug.Log(sizeX.ToString() + " " + sizeY.ToString() + " " + sizeZ.ToString());
 
-        public Texture2D AddMortarN(Texture2D tex)
-        {
-            Texture2D newTex = new Texture2D(tex.width+mortarWidth, tex.height+mortarWidth);// + mortarWidth, tex.height + mortarWidth);
-            int i, j;
-            newTex.SetPixels(tex.GetPixels());
-            for (i = 0; i < newTex.width; i++)
-            {
-                for (j = 0; j < newTex.height; j++)
-                {
-                    if (i >= tex.width-mortarWidth || j >= tex.height-mortarWidth) //(i < (int)Mathf.Round(mortarWidth / 2f) || j < (int)Mathf.Round(mortarWidth / 2f) || i >= newTex.width - (int)Mathf.Round(mortarWidth / 2f) || j >= newTex.height - (int)Mathf.Round(mortarWidth / 2f))
-                    {
-                       newTex.SetPixel(i, j, mortarColor);
-                    }
-                    else
-                    {
-                        //newTex.SetPixels(tex.GetPixels());//(i, j, tex.GetPixel(i - (int)Mathf.Round(mortarWidth / 2f), j - (int)Mathf.Round(mortarWidth / 2f)));
-                    }
-                }
-            }
-            newTex.Apply();
-            return newTex;
-        }
-        public Texture2D AddMortarN2(Texture2D tex)
-        {
-            Texture2D newTex = new Texture2D(tex.width, tex.height);// + mortarWidth, tex.height + mortarWidth);
-            //pix = tex.GetPixels32();
-            //newTex.SetPixels32(pix);
-            //newTex.Apply();
-            for (int i = 0; i < newTex.width; i++)
-            {
-                for (int j = 0; j < newTex.height; j++)
-                {
-                    if (i >= tex.width-mortarWidth || j >= tex.height-mortarWidth) //(i < (int)Mathf.Round(mortarWidth / 2f) || j < (int)Mathf.Round(mortarWidth / 2f) || i >= newTex.width - (int)Mathf.Round(mortarWidth / 2f) || j >= newTex.height - (int)Mathf.Round(mortarWidth / 2f))
-                    {
-                        newTex.SetPixel(i, j, mortarColor);
-                    }
-                    else
-                    {
-                        newTex.SetPixel(i, j, tex.GetPixel(i*(tex.width-mortarWidth)/tex.width, j* (tex.height - mortarWidth) / tex.height));
-                    }
-                }
-            }
-            newTex.Apply();
-            return newTex;
-        }
-        public Texture2D AddMortar(Texture2D tex)
-        {
-            Texture2D newTex = new Texture2D(tex.width + mortarWidth, tex.height + mortarWidth);
-            for (int i = 0; i < newTex.width; i++)
-            {
-                for (int j = 0; j < newTex.height; j++)
-                {
-                    if (i < (int)Mathf.Round(mortarWidth / 2f) || j < (int)Mathf.Round(mortarWidth / 2f) || i >= newTex.width - (int)Mathf.Round(mortarWidth / 2f) || j >= newTex.height - (int)Mathf.Round(mortarWidth / 2f))
-                    {
-                        newTex.SetPixel(i, j, mortarColor);
-                    }
-                    else
-                    {
-                        newTex.SetPixel(i, j, tex.GetPixel(i - (int)Mathf.Round(mortarWidth / 2f), j - (int)Mathf.Round(mortarWidth / 2f)));
-                    }
-                }
-            }
-            newTex.Apply();
-            return newTex;
-        }
-        public Texture2D AddMortarCopyTexture(Texture2D tex)
-        {
-            Texture2D newTex = new Texture2D(tex.width + mortarWidth, tex.height + mortarWidth);
-            Graphics.CopyTexture(tex, newTex);
-            for (int i = 0; i < newTex.width; i++)
-            {
-                for (int j = 0; j < newTex.height; j++)
-                {
-                    if (i < (int)Mathf.Round(mortarWidth / 2f) || j < (int)Mathf.Round(mortarWidth / 2f) || i >= newTex.width - (int)Mathf.Round(mortarWidth / 2f) || j >= newTex.height - (int)Mathf.Round(mortarWidth / 2f))
-                    {
-                        newTex.SetPixel(i, j, mortarColor);
-                    }
-                    else
-                    {
-                        //newTex.SetPixel(i, j, tex.GetPixel(i - (int)Mathf.Round(mortarWidth / 2f), j - (int)Mathf.Round(mortarWidth / 2f)));
-                    }
-                }
-            }
-            newTex.Apply();
-            return newTex;
+            GameObject replGo = (GameObject) Instantiate(replacementTest, root.transform);
+            replGo.transform.position = loc;// go.transform.position;
+            //replGo.transform.rotation = go.transform.rotation;
+            replGo.transform.localScale = new Vector3(sizeX, sizeY, sizeZ);
+            //replGo.transform.position += new Vector3(0f, sizeY/2, 0f);
+            Destroy(go);
         }
 
         public void ToggleLight()
