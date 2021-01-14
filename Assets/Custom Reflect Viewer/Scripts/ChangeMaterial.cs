@@ -77,7 +77,12 @@ namespace UnityEngine.Reflect
                 }
                 if ((Input.GetMouseButtonUp(1) && Time.time - timeClick < 0.3f) || (Input.touchCount > 2 && Input.touches[2].phase == TouchPhase.Began)) //right click
                 {
+                    GameObject prevSelected = selectedObject;
                     selectedObject = clickObjects();
+                    if(prevSelected == selectedObject && selectedObject.transform.position.magnitude > 0.00001f)
+                    {
+                        selectedObject.transform.rotation = Quaternion.Euler(0, 90, 0) * selectedObject.transform.rotation;
+                    }
                     //Debug.Log(selectedObject.name);
                     var selectedMeta = selectedObject.GetComponent<Metadata>();
                     //Dictionary<string, Metadata.Parameter> = selectedMeta.GetParameters;
@@ -215,18 +220,25 @@ namespace UnityEngine.Reflect
         public void ReplaceObject()
         {
             GameObject go = selectedObject;
-            float sizeX = go.GetComponent<Renderer>().bounds.size.x;
-            float sizeY = go.GetComponent<Renderer>().bounds.size.y;
-            float sizeZ = go.GetComponent<Renderer>().bounds.size.z;
+            Vector3 size = go.GetComponent<Renderer>().bounds.size;
             Vector3 loc = go.GetComponent<Renderer>().bounds.center;
-            Debug.Log(sizeX.ToString() + " " + sizeY.ToString() + " " + sizeZ.ToString());
 
-            GameObject replGo = (GameObject) Instantiate(replacementTest, root.transform);
-            replGo.transform.position = loc;// go.transform.position;
-            //replGo.transform.rotation = go.transform.rotation;
-            replGo.transform.localScale = new Vector3(sizeX, sizeY, sizeZ);
-            //replGo.transform.position += new Vector3(0f, sizeY/2, 0f);
-            Destroy(go);
+            if (go.transform.position.magnitude > 0.0001f)
+            {
+                GameObject replGo = (GameObject)Instantiate(replacementTest, root.transform);
+                replGo.transform.position = loc;
+                //replGo.transform.rotation = go.transform.rotation;
+                if(size.x < size.y)
+                {
+                    replGo.transform.localScale *= size.y;
+                    replGo.transform.rotation = Quaternion.Euler(0, 90, 0) * replGo.transform.rotation;
+                }
+                else
+                {
+                    replGo.transform.localScale *= size.x;
+                }
+                Destroy(go);
+            }
         }
 
         public void ToggleLight()
