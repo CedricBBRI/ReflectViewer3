@@ -302,6 +302,12 @@
     <Reference Include="System.Interactive.Async">
       <HintPath>C:/Users/cdri/ReflectViewer3/Library/PackageCache/com.unity.reflect.runtime@1.21.0-preview.7/Plugins/System.Interactive.Async/lib/net45/System.Interactive.Async.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>C:/Users/cdri/ReflectViewer3/Assets/Plugins/MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>C:/Users/cdri/ReflectViewer3/Assets/Plugins/System.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.10f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
     </Reference>
@@ -667,6 +673,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{DB474B05-B081-4EB1-9F55-DFF58ABBE304}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Timeline.Editor.csproj">
       <Project>{5436A388-82B3-ECE9-0BE5-58D8AF4C63E3}</Project>
       <Name>Unity.Timeline.Editor</Name>
