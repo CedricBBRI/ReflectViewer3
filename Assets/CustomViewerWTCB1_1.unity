@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 8282329551462664658, guid: 9cf087d6621405647bc1438d8c36018b, type: 3}
-  m_IndirectSpecularColor: {r: 0.25330013, g: 0.21698801, b: 0.23319203, a: 1}
+  m_IndirectSpecularColor: {r: 0.25330186, g: 0.21698852, b: 0.2331926, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27093,9 +27093,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DesktopScrollSensitivity: 5
   DesktopAltZoomSensitivity: 1
-  DesktopPanSensitivity: 0.003
+  DesktopPanSensitivity: 0.58
   DesktopRotateAroundPivotSensitivity: 0.05
-  DesktopRotateCameraSensitivity: 0.15
+  DesktopRotateCameraSensitivity: 1.06
   DesktopMoveSensitivity: {x: 0.5, y: 0.5}
   DesktopShiftFactor: 3
   TouchZoomSensitivity: 100
@@ -27328,7 +27328,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9163836744210443679}
   m_HandleRect: {fileID: 9163836744210443672}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
