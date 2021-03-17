@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: 703ea21d8cbc7744bbf8e6e41eedcf6e
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f488ea0f1e5ec1f45a401a0e4b986db1, type: 3}
+  materialRemaps:
+  - syncMaterialName: Brique_1er_ton_Terca_patrimonia Fleur de pommier_[...
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "Isolation - Laine min\xE9rale_[6114764]"
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "B\xE9ton cellulaire_[6115027]"
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Bloc_TC_[7996590]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "Bloc b\xE9ton_[6114679]"
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Poltec_[6115356]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Hourdis_[6118161]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Chape Isolante_[6118162]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Chape Ciment_[6118164]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Bois de charpente_[6145501]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: PareVapeur_[7985509]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: ParePluie_[7985508]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Tuiles_[7985511]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Semelle_radier_[7989470]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Ardoise_[6145504]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "Tuiles g\xE9n\xE9rique_[6145508]"
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Zinc_[6145507]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Carrelage_[6152365]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Default-Material
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "Isolation - Polyur\xE9thane_[6114763]"
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Plafonnage_[6115358]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "Porte Int. Blanc laqu\xE9_[5706064]"
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Acier inoxydable_[6171012]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "Porte Garage Int\xE9rieur Blanc_[5419665]"
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Acier_[6171266]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: BE Linteau_[6171330]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Seuil_Pierre Bleue_[5419505]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: TPH_Panneau MDF Hydro_[6171326]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: RAL 7035 Gris Clair_[5859059]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: RAL 5015 Bleu Ciel_[5859057]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: RAL 9010 Blanc Pur_[5859060]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: RAL 7030 Gris Pierre_[5859058]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "RAL 9005 Noir Fonc\xE9_[5859062]"
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: RAL 3000 Rouge Feu_[5859061]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Zone Libre_[6171328]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: PVC Blanc_[5961201]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Verre, vitrage transparent_[6079357]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Chrome_[6079358]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Aluminium_[5993139]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Tablette JASBERG_[5438818]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Mirroir_[6087087]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Sanitaire Baignoire acrylique_[6079359]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Blocs_Porotherm Rendement Plus_[6115029]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: PVC Vert_[6171016]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Sanitaire_PVC_Orange_[6170972]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: PVC_noir_[6115258]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: PVC Noir_[5961202]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "B\xE9ton, l\xE9ger_[6171008]"
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Chrome_[6079358_ds]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Ceramics-Azzurra-White_[12951194]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: ABS Plastic_[12951186]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Geberit blue_[12951180]_unsupported
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Brass, Soft Yellow_[12951189]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Geberit_[12951176]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Geberit black_[12951178]_unsupported
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Geberit steel_[12951179]_unsupported
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Filtre EDP_[13048400]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "Dalle b\xE9ton_[10257263]"
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Pierret - PVC Blanc Lisse (E_I)_[15028023]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "B\xE9ton arm\xE9_[15027837]"
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: Verre_[12936690]
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: "Fa\xEFence 25\u20AC_[15289978]"
+    remappedMaterial: {instanceID: 0}
