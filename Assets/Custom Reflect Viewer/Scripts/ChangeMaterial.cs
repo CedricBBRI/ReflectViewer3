@@ -68,7 +68,7 @@ namespace UnityEngine.Reflect
                 if (selectedObject != null)
                 {
                     //CreateUI(selectedObject);
-                    CreateUINew(selectedObject);
+                    matPossible = CreateUINew(selectedObject);
                 }
                 // instead of GameObject, could use custom type like ControllableUnit
                 if (Input.GetMouseButtonDown(1)) //right click
@@ -143,7 +143,7 @@ namespace UnityEngine.Reflect
             return target;
         }
 
-        public void CreateUINew(GameObject go)
+        public List<Material> CreateUINew(GameObject go)
         {
             Vector3 imOffset = new Vector3(floatImgOffset[0], floatImgOffset[1], floatImgOffset[2]);
             var meta = go.GetComponent<Metadata>();
@@ -152,7 +152,7 @@ namespace UnityEngine.Reflect
             if (go.name.Contains("Wall") || meta.GetParameter("Category").Contains("Wall")) //If it's a wall, show wall material options
             {
                 matPossible.AddRange(Resources.LoadAll("Materials/Wall", typeof(Material)).Cast<Material>().ToList());
-                texPossible.AddRange(Resources.LoadAll("Materials/Tiles", typeof(Texture)).Cast<Texture>().ToList());
+                //texPossible.AddRange(Resources.LoadAll("Materials/Tiles", typeof(Texture)).Cast<Texture>().ToList());
             }
             if (go.name.Contains("Floor") || meta.GetParameter("Category").Contains("Floor"))
             {
@@ -194,6 +194,7 @@ namespace UnityEngine.Reflect
                     materialImages[i] = tempImg;
                 }
             }
+            return matPossible;
         }
 
         public void ChangeMaterialClick(Material mat)
