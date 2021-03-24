@@ -20,7 +20,7 @@ namespace UnityEngine.Reflect
         public float[] floatImgOffset;
         private Vector3 hitPoint;
 
-        public List<Material> matPossible;
+        public List<Material> matPoss;
         public List<Texture> texPossible;
         public List<Image> materialImages;
 
@@ -68,7 +68,7 @@ namespace UnityEngine.Reflect
                 if (selectedObject != null)
                 {
                     //CreateUI(selectedObject);
-                    matPossible = CreateUINew(selectedObject);
+                    matPoss = CreateUINew(selectedObject, 1);
                 }
                 // instead of GameObject, could use custom type like ControllableUnit
                 if (Input.GetMouseButtonDown(1)) //right click
@@ -77,7 +77,7 @@ namespace UnityEngine.Reflect
                 }
                 if ((Input.GetMouseButtonUp(1) && Time.time - timeClick < 0.3f) || (Input.touchCount > 2 && Input.touches[2].phase == TouchPhase.Began)) //right click
                 {
-                    selectedObject = clickObjects();
+                    selectedObject = ClickObjects();
                     //Debug.Log(selectedObject.name);
                     var selectedMeta = selectedObject.GetComponent<Metadata>();
                     //Dictionary<string, Metadata.Parameter> = selectedMeta.GetParameters;
@@ -92,12 +92,12 @@ namespace UnityEngine.Reflect
                 }
                 if (Input.GetMouseButtonUp(1) && Input.GetKey(KeyCode.LeftControl)) //right click and ctrl
                 {
-                    selectedObject = clickObjects();
+                    selectedObject = ClickObjects();
                     ReplaceObject();
                 }
                 if ((Input.touchCount > 2 && Input.touches[2].phase == TouchPhase.Began)) //triple touch
                 {
-                    selectedObject = clickObjects();
+                    selectedObject = ClickObjects();
                     Debug.Log(selectedObject.name);
                     var selectedMeta = selectedObject.GetComponent<Metadata>();
                     //Dictionary<string, Metadata.Parameter> = selectedMeta.GetParameters;
@@ -119,7 +119,7 @@ namespace UnityEngine.Reflect
             }
         }
 
-        GameObject clickObjects()
+        GameObject ClickObjects()
         {
             Ray ray;
             GameObject target = null;
@@ -143,58 +143,62 @@ namespace UnityEngine.Reflect
             return target;
         }
 
-        public List<Material> CreateUINew(GameObject go)
+        public List<Material> CreateUINew(GameObject go, int draw)
         {
             Vector3 imOffset = new Vector3(floatImgOffset[0], floatImgOffset[1], floatImgOffset[2]);
             var meta = go.GetComponent<Metadata>();
-            matPossible = new List<Material>();
-            texPossible = new List<Texture>();
+            List<Material> matPoss = new List<Material>();
+            List<Texture> texPoss = new List<Texture>();
             if (go.name.Contains("Wall") || meta.GetParameter("Category").Contains("Wall")) //If it's a wall, show wall material options
             {
-                matPossible.AddRange(Resources.LoadAll("Materials/Wall", typeof(Material)).Cast<Material>().ToList());
+                matPoss.AddRange(Resources.LoadAll("Materials/Wall", typeof(Material)).Cast<Material>().ToList());
                 //texPossible.AddRange(Resources.LoadAll("Materials/Tiles", typeof(Texture)).Cast<Texture>().ToList());
             }
             if (go.name.Contains("Floor") || meta.GetParameter("Category").Contains("Floor"))
             {
-                matPossible.AddRange(Resources.LoadAll("Materials/Floor", typeof(Material)).Cast<Material>().ToList());
+                matPoss.AddRange(Resources.LoadAll("Materials/Floor", typeof(Material)).Cast<Material>().ToList());
             }
             if (go.name.Contains("Window") || meta.GetParameter("Category").Contains("Window"))
             {
-                matPossible.AddRange(Resources.LoadAll("Materials/Window", typeof(Material)).Cast<Material>().ToList());
+                matPoss.AddRange(Resources.LoadAll("Materials/Window", typeof(Material)).Cast<Material>().ToList());
             }
             if (go.name.Contains("Ceiling") || meta.GetParameter("Category").Contains("Ceiling"))
             {
-                matPossible.AddRange(Resources.LoadAll("Materials/Wall", typeof(Material)).Cast<Material>().ToList());
-            }
-            for (int i = 0; i < materialImages.Count(); i++)
-            {
-                materialImages[i].transform.position = new Vector3(0f, -10000f, 0f);
+                matPoss.AddRange(Resources.LoadAll("Materials/Wall", typeof(Material)).Cast<Material>().ToList());
             }
             float[] mortarWidthArray = { 0.01f, 0.03f, 0.1f };
-            foreach(Texture tex in texPossible)
+            foreach (Texture tex in texPoss)
             {
                 Material tempMat = new Material(Shader.Find("Custom/TileShader"));
                 tempMat.mainTexture = tex;
                 tempMat.SetFloat("_MortarSize", mortarWidthArray[mortarSizeDrop.value]);
-                matPossible.Add(tempMat);
+                matPoss.Add(tempMat);
             }
-            if(matPossible.Count() >= 1)
+            if (draw >= 1)
             {
-                for (int i = 0; i < matPossible.Count(); i++)// Material mat in matPossible)
+                for (int i = 0; i < materialImages.Count(); i++)
                 {
-                    Material mat = new Material(matPossible[i]);
-                    Material mat3D = new Material(matPossible[i]);
-                    Image tempImg = materialImages[i];
-                    int maxSqrt = Mathf.FloorToInt(Mathf.Sqrt(matPossible.Count()));
-                    mat.shader = Shader.Find("UI/Default");
-                    tempImg.material = mat;
-                    RectTransform tempRect = (RectTransform)tempImg.transform;
-                    tempImg.transform.position = mainCam.WorldToScreenPoint(hitPoint) + imOffset + new Vector3(0f + Mathf.Floor(i/maxSqrt)* (tempRect.rect.width + 40f), -(tempRect.rect.height+40f) * (i- Mathf.Floor(i / maxSqrt)*maxSqrt), 0f);
-                    tempImg.GetComponent<Button>().onClick.AddListener(() => ChangeMaterialClick(mat3D));
-                    materialImages[i] = tempImg;
+                    materialImages[i].transform.position = new Vector3(0f, -10000f, 0f);
+                }
+                if (matPoss.Count() >= 1)
+                {
+                    //Debug.Log("draw >= 1\n");
+                    for (int i = 0; i < this.matPoss.Count(); i++)// Material mat in matPossible)
+                    {
+                        Material mat = new Material(this.matPoss[i]);
+                        Material mat3D = new Material(this.matPoss[i]);
+                        Image tempImg = materialImages[i];
+                        int maxSqrt = Mathf.FloorToInt(Mathf.Sqrt(this.matPoss.Count()));
+                        mat.shader = Shader.Find("UI/Default");
+                        tempImg.material = mat;
+                        RectTransform tempRect = (RectTransform)tempImg.transform;
+                        tempImg.transform.position = mainCam.WorldToScreenPoint(hitPoint) + imOffset + new Vector3(0f + Mathf.Floor(i / maxSqrt) * (tempRect.rect.width + 40f), -(tempRect.rect.height + 40f) * (i - Mathf.Floor(i / maxSqrt) * maxSqrt), 0f);
+                        tempImg.GetComponent<Button>().onClick.AddListener(() => ChangeMaterialClick(mat3D));
+                        materialImages[i] = tempImg;
+                    }
                 }
             }
-            return matPossible;
+            return matPoss;
         }
 
         public void ChangeMaterialClick(Material mat)
@@ -203,12 +207,12 @@ namespace UnityEngine.Reflect
             mat.mainTexture = texMort;
             foreach (Renderer rend in selectedObject.GetComponents<Renderer>())
             {
-                var mats = new Material[rend.materials.Length];
-                for (var j = 0; j < rend.materials.Length; j++)
+                var mats = new Material[rend.sharedMaterials.Length];
+                for (var j = 0; j < rend.sharedMaterials.Length; j++)
                 {
                     mats[j] = mat;
                 }
-                rend.materials = mats;
+                rend.sharedMaterials = mats;
             }
             selectedObject.GetComponent<MeshRenderer>().material = mat;
         }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
@@ -14,7 +14,8 @@ public class ToggleScenarios : MonoBehaviour
     public GameObject[] list6;
     List<GameObject> listAll1;
     List<GameObject> listAll2;
-    List<Material> matPossible;
+    List<Material> matPoss;
+    List<string> namePoss;
     public Text textCosts;
     int curScenario1 = 0;
     int curScenario2 = 0;
@@ -45,6 +46,7 @@ public class ToggleScenarios : MonoBehaviour
     {
         var test = changeMatScript.selectedObject.GetComponent<Metadata>().GetParameter("Area");
         double curArrea = double.Parse(test.Split()[0], System.Globalization.CultureInfo.InvariantCulture);
+        namePoss = new List<string>();
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             totArea1 = 0;
@@ -136,12 +138,26 @@ public class ToggleScenarios : MonoBehaviour
             }
         }
         curCost1 = 0.0;
-        foreach(GameObject go in listAll1)
+        if (listAll1.Count >= 1)
         {
-            matPossible = changeMatScript.CreateUINew(go);
-            if (matPossible.Contains(go.GetComponent<MeshRenderer>().material))
+            foreach (GameObject go in list1)
             {
-                curCost1 += 1.0;
+                matPoss = changeMatScript.CreateUINew(go, 0);
+                if (matPoss.Count >= 1)
+                {
+                    foreach (Material mat in matPoss)
+                    {
+                        namePoss.Add(mat.name);
+                        namePoss.Add(mat.name + " (Instance)");
+                        Debug.Log("namePoss: " + mat.name);
+                    }
+                    Debug.Log("nameCurr: " + go.GetComponent<MeshRenderer>().sharedMaterial.name);
+                    //if (matPoss.Contains(go.GetComponent<MeshRenderer>().sharedMaterial))
+                    if (namePoss.Contains(go.GetComponent<MeshRenderer>().sharedMaterial.name))
+                    { 
+                        curCost1 += double.Parse(go.GetComponent<Metadata>().GetParameter("Area").Split()[0], System.Globalization.CultureInfo.InvariantCulture) * 20.0;
+                    }
+                }
             }
         }
         textCosts.text = "Area is " + curArrea.ToString() + "\nThe price of scenario " + curScenario1 + " is " + curCost1.ToString() + "\nSelected area is " + totArea1 + "\nThe price of scenario " + curScenario2 + " is " + curCost2.ToString() + "\nSelected area is " + totArea2 + "\nTotal area: " + (totArea1 + totArea2) +"\nTotal cost: " + (curCost1 + curCost2).ToString();
