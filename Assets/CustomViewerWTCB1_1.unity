@@ -6229,6 +6229,7 @@ MonoBehaviour:
   mortarSizeDrop: {fileID: 1752849361}
   replacementTest: {fileID: 7974844083076294224, guid: 4a3025a7d43175747ade6db8ca856f40,
     type: 3}
+  functionReplaceCalled: 0
 --- !u!64 &1246789259
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21287,6 +21288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40edd6c69a9a9574dbb450e42f7d4d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listCustom: []
+  selectedObject: {fileID: 0}
   list1:
   - {fileID: 541626254}
   - {fileID: 1977780738}
@@ -27619,7 +27622,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9163836744210443679}
   m_HandleRect: {fileID: 9163836744210443672}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

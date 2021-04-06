@@ -7,6 +7,8 @@ using System.IO;
 
 public class ToggleScenarios : MonoBehaviour
 {
+    public List<GameObject> listCustom;
+    public GameObject selectedObject;
     public GameObject[] list1;
     public GameObject[] list2;
     public GameObject[] list3;
@@ -46,12 +48,15 @@ public class ToggleScenarios : MonoBehaviour
         listOfLists1.Add(list2);
         listOfLists1.Add(list3);
 
+        listCustom = new List<GameObject>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        var test = changeMatScript.selectedObject.GetComponent<Metadata>().GetParameter("Area");
+        selectedObject = changeMatScript.selectedObject;
+        var test = selectedObject.GetComponent<Metadata>().GetParameter("Area");
         double curArrea = double.Parse(test.Split()[0], System.Globalization.CultureInfo.InvariantCulture);
         namePoss = new List<string>();
         if (Input.GetKeyDown(KeyCode.Keypad1))
@@ -145,9 +150,10 @@ public class ToggleScenarios : MonoBehaviour
             }
         }
         curCost1 = 0.0;
-        if (listAll1.Count >= 1)
+        totArea1 = 0.0;
+        if (listCustom.Count >= 1)
         {
-            foreach (GameObject go in listOfLists1[curScenario1-1])
+            foreach (GameObject go in listCustom)
             {
                 matPoss = changeMatScript.CreateUINew(go, 0);
                 if (matPoss.Count >= 1)
@@ -156,19 +162,45 @@ public class ToggleScenarios : MonoBehaviour
                     {
                         namePoss.Add(mat.name);
                         namePoss.Add(mat.name + " (Instance)");
-                        Debug.Log("namePoss: " + mat.name);
+                        //Debug.Log("namePoss: " + mat.name);
                     }
-                    Debug.Log("nameCurr: " + go.GetComponent<MeshRenderer>().sharedMaterial.name);
+                    //Debug.Log("nameCurr: " + go.GetComponent<MeshRenderer>().sharedMaterial.name);
                     //if (matPoss.Contains(go.GetComponent<MeshRenderer>().sharedMaterial))
                     if (namePoss.Contains(go.GetComponent<MeshRenderer>().sharedMaterial.name))
                     { 
                         curCost1 += double.Parse(go.GetComponent<Metadata>().GetParameter("Area").Split()[0], System.Globalization.CultureInfo.InvariantCulture) * 20.0;
                     }
                 }
+                test = go.GetComponent<Metadata>().GetParameter("Area");
+                totArea1 += double.Parse(test.Split()[0], System.Globalization.CultureInfo.InvariantCulture);
             }
         }
-        textCosts.text = "Area is " + curArrea.ToString() + "\nThe price of scenario " + curScenario1 + " is " + curCost1.ToString() + "\nSelected area is " + totArea1 + "\nThe price of scenario " + curScenario2 + " is " + curCost2.ToString() + "\nSelected area is " + totArea2 + "\nTotal area: " + (totArea1 + totArea2) +"\nTotal cost: " + (curCost1 + curCost2).ToString();
+        textCosts.text = "Area is " + curArrea.ToString() + "\nThe price of scenario " + curScenario1 + " is " + curCost1.ToString() + "\nSelected area is " + totArea1;// + "\nThe price of scenario " + curScenario2 + " is " + curCost2.ToString() + "\nSelected area is " + totArea2 + "\nTotal area: " + (totArea1 + totArea2) +"\nTotal cost: " + (curCost1 + curCost2).ToString();
 
+        if (Input.GetMouseButtonUp(1) && Input.GetKey(KeyCode.LeftControl)) //right click and ctrl
+        {
+            if (listCustom.Contains(selectedObject))
+            {
+                listCustom.Remove(selectedObject);
+            }
+            else
+            {
+                listCustom.Add(selectedObject);
+            }
+        }   
+        
+        if(changeMatScript.functionReplaceCalled == true)
+        {
+            Debug.Log("changematscript");
+            if (listCustom.Contains(selectedObject))
+            {
+                foreach (GameObject go in listCustom)
+                {
+                    changeMatScript.ChangeMaterialClick(selectedObject.GetComponent<Renderer>().material,go);
+                }
+            }
+            changeMatScript.functionReplaceCalled = false;
+        }
     }
 
     void OnApplicationQuit()
@@ -200,4 +232,5 @@ public class ToggleScenarios : MonoBehaviour
 
         Application.OpenURL(path);
     }
+
 }

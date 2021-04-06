@@ -39,6 +39,8 @@ namespace UnityEngine.Reflect
 
         public GameObject replacementTest;
 
+        public bool functionReplaceCalled;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -58,6 +60,7 @@ namespace UnityEngine.Reflect
             {
                 Debug.Log("root is null");
             }
+            functionReplaceCalled = false;
         }
 
         // Update is called once per frame
@@ -93,7 +96,7 @@ namespace UnityEngine.Reflect
                 if (Input.GetMouseButtonUp(1) && Input.GetKey(KeyCode.LeftControl)) //right click and ctrl
                 {
                     selectedObject = ClickObjects();
-                    ReplaceObject();
+                    //ReplaceObject();
                 }
                 if ((Input.touchCount > 2 && Input.touches[2].phase == TouchPhase.Began)) //triple touch
                 {
@@ -193,7 +196,7 @@ namespace UnityEngine.Reflect
                         tempImg.material = mat;
                         RectTransform tempRect = (RectTransform)tempImg.transform;
                         tempImg.transform.position = mainCam.WorldToScreenPoint(hitPoint) + imOffset + new Vector3(0f + Mathf.Floor(i / maxSqrt) * (tempRect.rect.width + 40f), -(tempRect.rect.height + 40f) * (i - Mathf.Floor(i / maxSqrt) * maxSqrt), 0f);
-                        tempImg.GetComponent<Button>().onClick.AddListener(() => ChangeMaterialClick(mat3D));
+                        tempImg.GetComponent<Button>().onClick.AddListener(() => ChangeMaterialClick(mat3D, selectedObject));
                         materialImages[i] = tempImg;
                     }
                 }
@@ -201,8 +204,9 @@ namespace UnityEngine.Reflect
             return matPoss;
         }
 
-        public void ChangeMaterialClick(Material mat)
+        public void ChangeMaterialClick(Material mat, GameObject selectedObject)
         {
+            functionReplaceCalled = true;
             Texture2D texMort = (Texture2D) mat.mainTexture;
             mat.mainTexture = texMort;
             foreach (Renderer rend in selectedObject.GetComponents<Renderer>())
@@ -232,6 +236,7 @@ namespace UnityEngine.Reflect
             replGo.transform.localScale = new Vector3(sizeX, sizeY, sizeZ);
             //replGo.transform.position += new Vector3(0f, sizeY/2, 0f);
             Destroy(go);
+            functionReplaceCalled = true;
         }
 
         public void ToggleLight()
