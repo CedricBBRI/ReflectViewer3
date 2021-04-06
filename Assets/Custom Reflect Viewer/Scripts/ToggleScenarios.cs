@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Reflect;
+using System.IO;
 
 public class ToggleScenarios : MonoBehaviour
 {
@@ -17,14 +18,15 @@ public class ToggleScenarios : MonoBehaviour
     List<Material> matPoss;
     List<string> namePoss;
     public Text textCosts;
-    int curScenario1 = 0;
-    int curScenario2 = 0;
+    int curScenario1 = 1;
+    int curScenario2 = 1;
     double curCost1 = 0.00;
     double curCost2 = 0.00;
     double totArea1 = 0;
     double totArea2 = 0;
     GameObject root;
     ChangeMaterial changeMatScript;
+    List<GameObject[]> listOfLists1;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,11 @@ public class ToggleScenarios : MonoBehaviour
         listAll2.AddRange(list6);
         root = GameObject.Find("Root");
         changeMatScript = root.GetComponent<ChangeMaterial>();
+        listOfLists1 = new List<GameObject[]>();
+        listOfLists1.Add(list1);
+        listOfLists1.Add(list2);
+        listOfLists1.Add(list3);
+
     }
 
     // Update is called once per frame
@@ -140,7 +147,7 @@ public class ToggleScenarios : MonoBehaviour
         curCost1 = 0.0;
         if (listAll1.Count >= 1)
         {
-            foreach (GameObject go in list1)
+            foreach (GameObject go in listOfLists1[curScenario1-1])
             {
                 matPoss = changeMatScript.CreateUINew(go, 0);
                 if (matPoss.Count >= 1)
@@ -161,5 +168,36 @@ public class ToggleScenarios : MonoBehaviour
             }
         }
         textCosts.text = "Area is " + curArrea.ToString() + "\nThe price of scenario " + curScenario1 + " is " + curCost1.ToString() + "\nSelected area is " + totArea1 + "\nThe price of scenario " + curScenario2 + " is " + curCost2.ToString() + "\nSelected area is " + totArea2 + "\nTotal area: " + (totArea1 + totArea2) +"\nTotal cost: " + (curCost1 + curCost2).ToString();
+
+    }
+
+    void OnApplicationQuit()
+    {
+        Debug.Log("Application ending after " + Time.time + " seconds");
+        CreateCSV("Test");
+    }
+    void CreateCSV(string fileName)
+    {
+
+        string path = "C:/Users/cdri/Documents" + "/" + fileName + ".csv";
+        File.SetAttributes(path, File.GetAttributes(path) & ~FileAttributes.ReadOnly);
+        if (File.Exists(path))
+        {
+            File.WriteAllText(path, String.Empty);
+            //File.Delete(path);
+        }
+
+        var sr = File.CreateText(path);
+
+        string data = textCosts.text;
+
+        sr.WriteLine(data);
+
+        FileInfo fInfo = new FileInfo(path);
+        fInfo.IsReadOnly = true;
+
+        sr.Close();
+
+        Application.OpenURL(path);
     }
 }
