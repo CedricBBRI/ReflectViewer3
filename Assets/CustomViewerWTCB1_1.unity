@@ -421,12 +421,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61564939}
   m_CullTransparentMesh: 0
---- !u!1 &108433689 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8568993348167343465, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-    type: 3}
-  m_PrefabInstance: {fileID: 463680578}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &130506232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,12 +1775,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407948965}
   m_CullTransparentMesh: 0
---- !u!1 &408467519 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -736086465618238747, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-    type: 3}
-  m_PrefabInstance: {fileID: 463680578}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &435503701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,131 +2109,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459479062}
   m_CullTransparentMesh: 0
---- !u!1001 &463680578
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 4865311428313422705}
-    m_Modifications:
-    - target: {fileID: -8568993348167343465, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: wallDoor
-      objectReference: {fileID: 0}
-    - target: {fileID: -8471165085853332277, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: wallMirror
-      objectReference: {fileID: 0}
-    - target: {fileID: -4943685623332132611, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: wallShower1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1647531540326232921, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: wallToilet2
-      objectReference: {fileID: 0}
-    - target: {fileID: -1386812723013856374, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: wallMirrorLow
-      objectReference: {fileID: 0}
-    - target: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -736086465618238747, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: wallShowerBig
-      objectReference: {fileID: 0}
-    - target: {fileID: -168220340414521198, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: Shower
-      objectReference: {fileID: 0}
-    - target: {fileID: 2602109329803942618, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: Toilet
-      objectReference: {fileID: 0}
-    - target: {fileID: 2868755734630605276, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: wallToilet
-      objectReference: {fileID: 0}
-    - target: {fileID: 3924002475385371276, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: wallShower2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5416934233618128124, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6823078343261778856, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-        type: 3}
-      propertyPath: m_Name
-      value: Batiment test fai..._79E52C51
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: -9137962142385034750, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-    type: 3}
 --- !u!1 &473659834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,12 +2328,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485911536}
   m_CullTransparentMesh: 0
---- !u!1 &489304579 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -1647531540326232921, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-    type: 3}
-  m_PrefabInstance: {fileID: 463680578}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &489404078
 GameObject:
   m_ObjectHideFlags: 0
@@ -2652,12 +2509,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505930600}
   m_CullTransparentMesh: 0
---- !u!1 &541626254 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8471165085853332277, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-    type: 3}
-  m_PrefabInstance: {fileID: 463680578}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &547134667
 GameObject:
   m_ObjectHideFlags: 0
@@ -6158,12 +6009,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
---- !u!4 &1244159693 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -898823203858486556, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-    type: 3}
-  m_PrefabInstance: {fileID: 463680578}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1246789257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7461,12 +7306,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555658120}
   m_CullTransparentMesh: 0
---- !u!1 &1558515283 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3924002475385371276, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-    type: 3}
-  m_PrefabInstance: {fileID: 463680578}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1569817243
 GameObject:
   m_ObjectHideFlags: 0
@@ -8990,12 +8829,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760288564}
   m_CullTransparentMesh: 0
---- !u!1 &1766897113 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -1386812723013856374, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-    type: 3}
-  m_PrefabInstance: {fileID: 463680578}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1774779571
 GameObject:
   m_ObjectHideFlags: 0
@@ -10106,12 +9939,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974513621}
   m_CullTransparentMesh: 0
---- !u!1 &1977780738 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2868755734630605276, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-    type: 3}
-  m_PrefabInstance: {fileID: 463680578}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1989434496
 GameObject:
   m_ObjectHideFlags: 0
@@ -10186,12 +10013,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989434496}
   m_CullTransparentMesh: 0
---- !u!1 &2056945416 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4943685623332132611, guid: 703ea21d8cbc7744bbf8e6e41eedcf6e,
-    type: 3}
-  m_PrefabInstance: {fileID: 463680578}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2076876426
 GameObject:
   m_ObjectHideFlags: 0
@@ -19903,8 +19724,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1244159693}
+  m_Children: []
   m_Father: {fileID: 1338503454700262555}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21290,25 +21110,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listCustom: []
   selectedObject: {fileID: 0}
-  list1:
-  - {fileID: 541626254}
-  - {fileID: 1977780738}
-  - {fileID: 489304579}
-  list2:
-  - {fileID: 1766897113}
-  - {fileID: 1977780738}
-  - {fileID: 489304579}
-  list3:
-  - {fileID: 1977780738}
-  - {fileID: 489304579}
-  list4:
-  - {fileID: 2056945416}
-  - {fileID: 1558515283}
-  list5:
-  - {fileID: 408467519}
-  - {fileID: 108433689}
+  list1: []
+  list2: []
+  list3: []
+  list4: []
+  list5: []
   list6: []
   textCosts: {fileID: 1165616871}
+  defMat: {fileID: 2100000, guid: 1d0dd2710c9810f43b3528b0f32a1eb9, type: 2}
+  defMatWhite: {fileID: 2100000, guid: 3ed7d04fee1bc4343ad821beb434bdc8, type: 2}
 --- !u!1 &5491686516324275824
 GameObject:
   m_ObjectHideFlags: 0

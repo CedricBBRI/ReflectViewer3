@@ -29,6 +29,8 @@ public class ToggleScenarios : MonoBehaviour
     GameObject root;
     ChangeMaterial changeMatScript;
     List<GameObject[]> listOfLists1;
+    public Material defMat;
+    public Material defMatWhite;
 
     // Start is called before the first frame update
     void Start()
@@ -182,16 +184,20 @@ public class ToggleScenarios : MonoBehaviour
             if (listCustom.Contains(selectedObject))
             {
                 listCustom.Remove(selectedObject);
+                changeMatScript.ChangeMaterialClick(defMatWhite, selectedObject);
             }
             else
             {
                 listCustom.Add(selectedObject);
             }
+            foreach (GameObject go in listCustom)
+            {
+                changeMatScript.ChangeMaterialClick(defMat, go);
+            }
         }   
         
         if(changeMatScript.functionReplaceCalled == true)
         {
-            Debug.Log("changematscript");
             if (listCustom.Contains(selectedObject))
             {
                 foreach (GameObject go in listCustom)
