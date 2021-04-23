@@ -6025,9 +6025,7 @@ MonoBehaviour:
   objList: []
   metaList: []
   phases: []
-  layers: []
   numPhases: 0
-  numLayers: 0
   dropDownPhases: {fileID: 950058005}
   slider: {fileID: 9167552030809727554}
   sliderVal: {fileID: 1071912716}
@@ -6036,7 +6034,6 @@ MonoBehaviour:
   sortByDrop: {fileID: 864239986}
   showOnly: {fileID: 854412472}
   alpha: 0.02
-  currentCostText: {fileID: 1174919535}
 --- !u!114 &1246789258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15471,7 +15468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000091552734, y: -0.000054165743}
+  m_AnchoredPosition: {x: 0.000091552734, y: 0.6830243}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &3343427447551857435
@@ -15938,8 +15935,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3343427448808266599}
   m_HandleRect: {fileID: 3343427448808266596}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.39498648
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21108,7 +21105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40edd6c69a9a9574dbb450e42f7d4d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listCustom: []
   selectedObject: {fileID: 0}
   list1: []
   list2: []
@@ -21119,6 +21115,8 @@ MonoBehaviour:
   textCosts: {fileID: 1165616871}
   defMat: {fileID: 2100000, guid: 1d0dd2710c9810f43b3528b0f32a1eb9, type: 2}
   defMatWhite: {fileID: 2100000, guid: 3ed7d04fee1bc4343ad821beb434bdc8, type: 2}
+  listCustom: []
+  curList: 0
 --- !u!1 &5491686516324275824
 GameObject:
   m_ObjectHideFlags: 0

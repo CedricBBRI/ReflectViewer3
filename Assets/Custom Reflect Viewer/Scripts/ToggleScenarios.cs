@@ -7,7 +7,6 @@ using System.IO;
 
 public class ToggleScenarios : MonoBehaviour
 {
-    public List<GameObject> listCustom;
     public GameObject selectedObject;
     public GameObject[] list1;
     public GameObject[] list2;
@@ -21,16 +20,17 @@ public class ToggleScenarios : MonoBehaviour
     List<string> namePoss;
     public Text textCosts;
     int curScenario1 = 1;
-    int curScenario2 = 1;
     double curCost1 = 0.00;
-    double curCost2 = 0.00;
     double totArea1 = 0;
-    double totArea2 = 0;
     GameObject root;
     ChangeMaterial changeMatScript;
     List<GameObject[]> listOfLists1;
     public Material defMat;
     public Material defMatWhite;
+
+    public List<GameObject> listCustom;
+    public List<List<GameObject>> listOfListCustom;
+    public int curList;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +51,9 @@ public class ToggleScenarios : MonoBehaviour
         listOfLists1.Add(list3);
 
         listCustom = new List<GameObject>();
+        listOfListCustom = new List<List<GameObject>>();
+        listOfListCustom.Add(listCustom);
+        curList = 0;
 
     }
 
@@ -59,7 +62,11 @@ public class ToggleScenarios : MonoBehaviour
     {
         selectedObject = changeMatScript.selectedObject;
         var test = selectedObject.GetComponent<Metadata>().GetParameter("Area");
-        double curArrea = double.Parse(test.Split()[0], System.Globalization.CultureInfo.InvariantCulture);
+        double curArrea = 0.0;
+        if (test.Split()[0].Length > 0)
+        {
+            curArrea = double.Parse(test.Split()[0], System.Globalization.CultureInfo.InvariantCulture);
+        }
         namePoss = new List<string>();
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
@@ -76,81 +83,6 @@ public class ToggleScenarios : MonoBehaviour
                 totArea1 += double.Parse(test.Split()[0], System.Globalization.CultureInfo.InvariantCulture);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            totArea1 = 0;
-            curScenario1 = 2;
-            foreach (GameObject obj in listAll1)
-            {
-                obj.SetActive(false);
-            }
-            foreach (GameObject obj in list2)
-            {
-                obj.SetActive(true);
-                test = obj.GetComponent<Metadata>().GetParameter("Area");
-                totArea1 += double.Parse(test.Split()[0], System.Globalization.CultureInfo.InvariantCulture);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            totArea1 = 0;
-            curScenario1 = 3;
-            foreach (GameObject obj in listAll1)
-            {
-                obj.SetActive(false);
-            }
-            foreach (GameObject obj in list3)
-            {
-                obj.SetActive(true);
-                test = obj.GetComponent<Metadata>().GetParameter("Area");
-                totArea1 += double.Parse(test.Split()[0], System.Globalization.CultureInfo.InvariantCulture);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            totArea2 = 0;
-            curScenario2 = 1;
-            foreach (GameObject obj in listAll2)
-            {
-                obj.SetActive(false);
-            }
-            foreach (GameObject obj in list4)
-            {
-                obj.SetActive(true);
-                test = obj.GetComponent<Metadata>().GetParameter("Area");
-                totArea2 += double.Parse(test.Split()[0], System.Globalization.CultureInfo.InvariantCulture);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad5))
-        {
-            totArea2 = 0;
-            curScenario2 = 2;
-            foreach (GameObject obj in listAll2)
-            {
-                obj.SetActive(false);
-            }
-            foreach (GameObject obj in list5)
-            {
-                obj.SetActive(true);
-                test = obj.GetComponent<Metadata>().GetParameter("Area");
-                totArea2 += double.Parse(test.Split()[0], System.Globalization.CultureInfo.InvariantCulture);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad6))
-        {
-            totArea2 = 0;
-            curScenario2 = 3;
-            foreach (GameObject obj in listAll2)
-            {
-                obj.SetActive(false);
-            }
-            foreach (GameObject obj in list6)
-            {
-                obj.SetActive(true);
-                test = obj.GetComponent<Metadata>().GetParameter("Area");
-                totArea2 += double.Parse(test.Split()[0], System.Globalization.CultureInfo.InvariantCulture);
-            }
-        }
         curCost1 = 0.0;
         totArea1 = 0.0;
         if (listCustom.Count >= 1)
@@ -164,10 +96,7 @@ public class ToggleScenarios : MonoBehaviour
                     {
                         namePoss.Add(mat.name);
                         namePoss.Add(mat.name + " (Instance)");
-                        //Debug.Log("namePoss: " + mat.name);
                     }
-                    //Debug.Log("nameCurr: " + go.GetComponent<MeshRenderer>().sharedMaterial.name);
-                    //if (matPoss.Contains(go.GetComponent<MeshRenderer>().sharedMaterial))
                     if (namePoss.Contains(go.GetComponent<MeshRenderer>().sharedMaterial.name))
                     { 
                         curCost1 += double.Parse(go.GetComponent<Metadata>().GetParameter("Area").Split()[0], System.Globalization.CultureInfo.InvariantCulture) * 20.0;
@@ -179,30 +108,46 @@ public class ToggleScenarios : MonoBehaviour
         }
         textCosts.text = "Area is " + curArrea.ToString() + "\nThe price of scenario " + curScenario1 + " is " + curCost1.ToString() + "\nSelected area is " + totArea1;// + "\nThe price of scenario " + curScenario2 + " is " + curCost2.ToString() + "\nSelected area is " + totArea2 + "\nTotal area: " + (totArea1 + totArea2) +"\nTotal cost: " + (curCost1 + curCost2).ToString();
 
-        if (Input.GetMouseButtonUp(1) && Input.GetKey(KeyCode.LeftControl)) //right click and ctrl
+        if (Input.GetMouseButtonUp(1) && Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.LeftAlt)) //right click and ctrl and alt; ADD NEW CUSTOMLIST!!!
         {
-            if (listCustom.Contains(selectedObject))
+            Debug.Log("ctrl alt");
+            listOfListCustom.Add(new List<GameObject>());
+            curList = listOfListCustom.Count-1;
+            listOfListCustom[curList].Add(selectedObject);
+        }
+        else if (Input.GetMouseButtonUp(1) && Input.GetKey(KeyCode.LeftControl)) //right click and ctrl, ADD TO OR REMOVE FROM CUSTOMLIST
+        {
+            if (!listOfListCustom[curList].Contains(selectedObject))
             {
-                listCustom.Remove(selectedObject);
-                changeMatScript.ChangeMaterialClick(defMatWhite, selectedObject);
+                listOfListCustom[curList].Add(selectedObject);
+                foreach (GameObject go in listOfListCustom[curList])
+                {
+                    changeMatScript.ChangeMaterialClick(defMat, go);
+                }
             }
-            else
+            for (int i = 0; i < listOfListCustom.Count; i++)
             {
-                listCustom.Add(selectedObject);
-            }
-            foreach (GameObject go in listCustom)
-            {
-                changeMatScript.ChangeMaterialClick(defMat, go);
+                if (listOfListCustom[i].Contains(selectedObject))
+                {
+                    listOfListCustom[i].Remove(selectedObject);
+                    foreach (GameObject go in listOfListCustom[i])
+                    {
+                        changeMatScript.ChangeMaterialClick(defMat, go);
+                    }
+                }
             }
         }   
         
         if(changeMatScript.functionReplaceCalled == true)
         {
-            if (listCustom.Contains(selectedObject))
+            for (int i = 0; i < listOfListCustom.Count; i++)
             {
-                foreach (GameObject go in listCustom)
+                if (listOfListCustom[i].Contains(selectedObject))
                 {
-                    changeMatScript.ChangeMaterialClick(selectedObject.GetComponent<Renderer>().material,go);
+                    foreach (GameObject go in listOfListCustom[i])
+                    {
+                        changeMatScript.ChangeMaterialClick(selectedObject.GetComponent<Renderer>().material, go);
+                    }
                 }
             }
             changeMatScript.functionReplaceCalled = false;
@@ -236,7 +181,7 @@ public class ToggleScenarios : MonoBehaviour
 
         sr.Close();
 
-        Application.OpenURL(path);
+        //Application.OpenURL(path);
     }
 
 }

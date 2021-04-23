@@ -4,22 +4,20 @@ using System.Linq;
 
 namespace UnityEngine.Reflect
 {
-    public class FindAllObjects : MonoBehaviour
+    public class FindAllObjects : MonoBehaviour  //Finds objects and makes them ready for editing and stuff?
     {
 
         Transform[] transformArr;
-        public List<Transform> transformList;
-        public List<GameObject> objList;
-        public List<Metadata> metaList;
-        public List<string> phases;
-        public List<string> layers;
-        public int numPhases = 0;
-        public int numLayers = 0;
-        public Dropdown dropDownPhases;
+        public List<Transform> transformList; //List of all the transforms of all objects imported by Reflect
+        public List<GameObject> objList; //List of all objects imported
+        public List<Metadata> metaList; //List of all metadata
+        public List<string> phases; //List of all phasing info
+        public int numPhases = 0; //Number of phases
+        public Dropdown dropDownPhases; //
 
-        public Slider slider;
-        public Text sliderVal;
-        public Toggle prevToggle;
+        public Slider slider; //Slider to go between phases
+        public Text sliderVal; //Name of current phase shown
+        public Toggle prevToggle; //To select if to show phase alone or include previous phases as well
 
         public InputField sortBy;
         public Dropdown sortByDrop;
@@ -28,12 +26,10 @@ namespace UnityEngine.Reflect
 
         List<string> keyList;
         List<string> keyList2;
-        GameObject root;
+        GameObject root; //GameObject under which all imported gameobjects are stored
 
         public float alpha;
 
-        public Text currentCostText;
-        float currentCost;
 
         public void FindAll(InputField strInput)
         {
@@ -41,62 +37,36 @@ namespace UnityEngine.Reflect
             {
                 Initialize();
                 string curPhase;
-                currentCost = 0;
                 foreach (Transform tr in transformList)
                 {
                     GameObject go = tr.gameObject;
                     Debug.Log(go.name + "\n");
                     var meta = go.GetComponent<Metadata>();
-                    if (go.transform.IsChildOf(root.transform) && meta != null && meta.GetParameters().Count() >= 1)// && go.GetComponent<MeshRenderer>() != null)
+                    if (go.transform.IsChildOf(root.transform) && meta != null && meta.GetParameters().Count() >= 1)
                     {
                         objList.Add(go);
-                        if (!meta.GetParameter("Category").Contains("Door")){
+                        if (!meta.GetParameter("Category").Contains("Door")){ //Adds collision boxes to all objects except those labeled as door
                             go.AddComponent<MeshCollider>();
                         }
                         metaList.Add(meta);
                         if (go.name.Contains(strInput.text)) //Find all elements whose name includes...
                         {
                             Debug.Log(go.name + "\n");
-                            //go.SetActive(false);
                         }
                         Dictionary<string, Metadata.Parameter> dict = meta.GetParameters();
-                        //foreach (KeyValuePair<string, Metadata.Parameter> kvp in dict)
-                        //{
-                        //Debug.Log(kvp.Key);
-                        //}
-                        //currentCost += float.Parse(meta.GetParameter("Cost"));
                         curPhase = meta.GetParameter(dropDownPhases.captionText.text);
                         if (!phases.Contains(curPhase) && curPhase.Count() >= 1)
                         {
                             phases.Add(curPhase);
                         }
-                        //phaseDict.Add(meta.GetParameter("Phase Created"), go);
-
-                        //Debug.Log(meta.GetParameter("Phase Created"));
-                    }
-                    else
-                    {
-                        //transformList.Remove(tr);
                     }
                 }
                 phases.Sort();
-                layers.Sort();
-                numPhases = phases.Count;
-                foreach (string str in phases)
-                {
-                    //Debug.Log(str);
-                }
-                //Debug.Log(numPhases);
+                numPhases = phases.Count; //number of phases
 
-                if (numPhases >= 1)
+                if (numPhases == 0)
                 {
-
-                }
-                else
-                {
-                    phases = layers;
-                    numPhases = numLayers;
-
+                    numPhases = 1;
                 }
                 slider.maxValue = numPhases;
                 slider.value = slider.maxValue;
@@ -169,7 +139,6 @@ namespace UnityEngine.Reflect
 
         public void UpdatePhasesShown()
         {
-            currentCost = 0;
             sliderVal.text = phases[(int)slider.value-1].ToString();
             float maxPhase = slider.value;
             foreach(GameObject go in objList)
@@ -201,7 +170,6 @@ namespace UnityEngine.Reflect
                     }
                 }
             }
-            currentCostText.text = "Current cost: " + currentCost.ToString();
         }
 
         public void ClearLists()
